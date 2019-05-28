@@ -6,12 +6,19 @@ import { NavParams, ModalController } from '../../../node_modules/@ionic/angular
   templateUrl: './login-modal.page.html',
   styleUrls: ['./login-modal.page.scss'],
 })
+
 export class LoginModalPage implements OnInit {
 
   constructor(private navParams: NavParams,
-              private modalLoginController: ModalController) { }
+              private modalLoginController: ModalController,
+              ) {
+  }
 
   ngOnInit() {
+  }
+
+  onSubmit(form){
+    this.closeLoginModal();
   }
 
   closeLoginModal(){

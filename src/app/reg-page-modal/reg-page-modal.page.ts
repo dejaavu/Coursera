@@ -18,4 +18,8 @@ export class RegModalPage implements OnInit {
   	this.modalSignUpController.dismiss();
   }
 
+  onSubmit(form){
+    this.closeRegModal();
+  }
+
 }
