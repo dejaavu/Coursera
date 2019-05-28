@@ -38,6 +38,7 @@ export class AppComponent {
   async openModalSignUp() {
     const modalSignUp = await this.modalSignUpController.create({
       component: RegModalPage,
+      backdropDismiss: false,
     });
     modalSignUp.present();
   }
@@ -45,6 +46,7 @@ export class AppComponent {
   async openModalLogin() {
     const modalLogin = await this.modalLoginController.create({
       component: LoginModalPage,
+      backdropDismiss: false,
     });
     modalLogin.present();
   }

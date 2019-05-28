@@ -16,16 +16,16 @@
           </div>
           <div padding>
             <ion-item>
-              <ion-input  name="name" type="text" placeholder="Name" ngModel required></ion-input>
+              <ion-input  name="name" type="text" placeholder="Name" ngModel required (ionChange)="p=0"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
+              <ion-input name="email" type="email" placeholder="your@email.com" ngModel required (ionChange)="q=0"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+              <ion-input name="password" type="password" placeholder="Password" ngModel required (ionChange)="r=0"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="confirm" type="password" placeholder="Password again" ngModel required></ion-input>
+              <ion-input name="confirm" type="password" placeholder="Password again" ngModel required (ionChange)="s=0"></ion-input>
             </ion-item>
           </div>
           <div padding>
