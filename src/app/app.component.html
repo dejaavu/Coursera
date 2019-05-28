@@ -1,0 +1,30 @@
+<ion-app>
+
+  <ion-menu contentId="main" menuId="homeList">
+
+  	<ion-header>
+      <ion-toolbar>
+  	    <ion-title>
+  	  	  Welcome
+  	    </ion-title>
+  	  </ion-toolbar>
+  	</ion-header>
+
+  	<ion-content>
+  	  <br>
+  	  <br>
+  	  <br>
+  	  <ion-button expand="block" fill="solid" color="tertiary" (click)="openModalSignUp()">
+  	  	Signup
+  	  </ion-button>
+  	  <br>
+  	  <br>
+  	  <ion-button expand="block" fill="outline" color="medium" (click)="openModalLogin()">
+  	  	Login
+  	  </ion-button>
+  	</ion-content>
+
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>
