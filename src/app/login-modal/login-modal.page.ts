@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '../../../node_modules/@ionic/angular';
 
 import { AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login-modal',
@@ -11,12 +12,13 @@ import { AlertController } from '@ionic/angular';
 
 export class LoginModalPage implements OnInit {
 
-  a=1;
-  b=1;
+  emailset=0;
+  pwdset=0;
 
   constructor(private navParams: NavParams,
               private modalLoginController: ModalController,
-              public alertController: AlertController) {
+              public alertController: AlertController,
+              private toastController: ToastController) {
   }
 
   ngOnInit() {
@@ -46,14 +48,23 @@ export class LoginModalPage implements OnInit {
 
   onSubmit(form){
     this.modalLoginController.dismiss();
+    this.presentToast("Login Successful");
   }
 
   closeLoginModal(){
-  	if(this.a&&this.b){
+  	if(!this.emailset&&!this.pwdset){
       this.modalLoginController.dismiss();
     }else{
       this.alertShow();
     }
+  }
+
+  async presentToast(msg: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+    });
+    toast.present();
   }
 
 }

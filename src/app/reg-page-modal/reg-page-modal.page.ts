@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '../../../node_modules/@ionic/angular';
 
 import { AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reg-modal',
@@ -10,14 +11,15 @@ import { AlertController } from '@ionic/angular';
 })
 export class RegModalPage implements OnInit {
 
-  p=1;
-  q=1;
-  r=1;
-  s=1;
+  nameset=0;
+  emailset=0;
+  pwdset=0;
+  pwdagainset=0;
 
   constructor(private navParams: NavParams,
   			      private modalSignUpController: ModalController,
-              public alertController: AlertController) { }
+              public alertController: AlertController,
+              private toastController: ToastController) { }
 
   ngOnInit() {
   }
@@ -45,7 +47,7 @@ export class RegModalPage implements OnInit {
     }
 
   closeRegModal(){
-    if(this.p&&this.q&&this.r&&this.s){
+    if(!this.nameset&&!this.emailset&&!this.pwdset&&!this.pwdagainset){
       this.modalSignUpController.dismiss();
     }else{
       this.alertShow();
@@ -54,6 +56,15 @@ export class RegModalPage implements OnInit {
 
   onSubmit(form){
     	this.modalSignUpController.dismiss();
+      this.presentToast("Registration Successful");
+  }
+
+  async presentToast(msg: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+    });
+    toast.present();
   }
 
 }
