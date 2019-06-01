@@ -27,6 +27,17 @@
             <ion-item>
               <ion-input name="confirm" type="password" placeholder="Password again" ngModel required (ionChange)="pwdagainset=1"></ion-input>
             </ion-item>
+          <div>
+            <ion-list>
+                <ion-item>
+                  <ion-label>User level</ion-label>
+                  <ion-select ngModel (ionChange)="select=1">
+                    <ion-select-option value="admin">Faculty</ion-select-option>
+                    <ion-select-option value="user">Student</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-list>
+          </div>
           </div>
           <div padding>
             <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>

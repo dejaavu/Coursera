@@ -15,6 +15,7 @@ export class RegModalPage implements OnInit {
   emailset=0;
   pwdset=0;
   pwdagainset=0;
+  select=0;
 
   constructor(private navParams: NavParams,
   			      private modalSignUpController: ModalController,
@@ -47,7 +48,7 @@ export class RegModalPage implements OnInit {
     }
 
   closeRegModal(){
-    if(!this.nameset&&!this.emailset&&!this.pwdset&&!this.pwdagainset){
+    if(!this.nameset&&!this.emailset&&!this.pwdset&&!this.pwdagainset&&!this.select){
       this.modalSignUpController.dismiss();
     }else{
       this.alertShow();
@@ -55,8 +56,10 @@ export class RegModalPage implements OnInit {
   }
 
   onSubmit(form){
+    if(this.select){
     	this.modalSignUpController.dismiss();
       this.presentToast("Registration Successful");
+    }
   }
 
   async presentToast(msg: string) {
