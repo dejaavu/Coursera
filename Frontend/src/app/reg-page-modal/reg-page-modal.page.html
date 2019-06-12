@@ -31,9 +31,9 @@
             <ion-list>
                 <ion-item>
                   <ion-label>User level</ion-label>
-                  <ion-select ngModel (ionChange)="select=1">
-                    <ion-select-option value="admin">Faculty</ion-select-option>
-                    <ion-select-option value="user">Student</ion-select-option>
+                  <ion-select name="userlevel" ngModel (ionChange)="select=1">
+                    <ion-select-option value="Faculty">Faculty</ion-select-option>
+                    <ion-select-option value="Student">Student</ion-select-option>
                   </ion-select>
                 </ion-item>
               </ion-list>

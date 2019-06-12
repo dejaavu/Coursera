@@ -6,7 +6,7 @@ var connection = require('../config/config');
 module.exports.register = function(req,res){
 
   (async function(){
-    
+
     const myPlaintextPassword = req.body.password;
     const saltRounds = 10;
     var hash = await bcrypt.hash(myPlaintextPassword, saltRounds);
@@ -14,7 +14,8 @@ module.exports.register = function(req,res){
     var users = {
         "name":req.body.name,
         "email":req.body.email,
-        "password":hash
+        "password":hash,
+        "userlevel":req.body.userlevel,
     };
 
     connection.query('INSERT INTO users SET ?',users, function (error, results, fields) {

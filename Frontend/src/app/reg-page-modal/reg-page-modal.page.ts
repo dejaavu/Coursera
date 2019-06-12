@@ -59,6 +59,7 @@ export class RegModalPage implements OnInit {
     if(this.select){
     	this.modalSignUpController.dismiss();
       this.presentToast("Registration Successful");
+      console.log(form.value);
     }
   }
 
