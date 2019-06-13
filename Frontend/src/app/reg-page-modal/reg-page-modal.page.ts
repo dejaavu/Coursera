@@ -51,7 +51,7 @@ export class RegModalPage implements OnInit {
     }
 
   closeRegModal(){
-    if(!this.nameset&&!this.emailset&&!this.pwdset&&!this.pwdagainset&&!this.select){
+    if(!this.nameset&&!this.emailset&&!this.pwdset&&!this.pwdagainset&&!this.userlevelset){
       this.modalSignUpController.dismiss();
     }else{
       this.alertShow();
@@ -60,12 +60,17 @@ export class RegModalPage implements OnInit {
 
   onSubmit(form){
     if(this.userlevelset){
-    	this.modalSignUpController.dismiss();
-      this.presentToast("Registration Successful");
       this.http.post("http://localhost:5000/api/register",form.value,{ })
       .subscribe(
-        form => {
-          console.log("OK");
+        res => {
+          if(res["status"]){
+            this.presentToast("Registration Successful");
+            this.modalSignUpController.dismiss();
+          } else {
+            this.presentToast(`Registration Unsuccessful : ${ res["message"] }`);
+          }
+
+          console.log(res);
        },
         err => {
           console.log(err);

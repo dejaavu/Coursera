@@ -3,36 +3,68 @@ const bcrypt = require('bcrypt');
 var express=require("express");
 var connection = require('../config/config');
 
-module.exports.register = function(req,res){
+module.exports.register = function(req, res){
 
-  (async function(){
+  function validate(form){
+    if(form.password !== form.passwordagain){
+      res.json({
+        status:false,
+        message:"Passwords don't match"
+      });
+      return false;
 
-    const myPlaintextPassword = req.body.password;
-    const saltRounds = 10;
-    var hash = await bcrypt.hash(myPlaintextPassword, saltRounds);
+    }
+    if(form.password.length<8){
+      res.json({
+        status:false,
+        message:"Password length less than 8"
+      });
+      return false;
 
-    var users = {
-        "name":req.body.name,
-        "email":req.body.email,
-        "password":hash,
-        "userlevel":req.body.userlevel,
-    };
+    }
+    emailregex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!emailregex.test(form.email)){
+      res.json({
+        status:false,
+        message:"Email address has wrong format"
+      });
+      return false;
 
-    connection.query('INSERT INTO users SET ?',users, function (error, results, fields) {
-      if (error) {
-        res.json({
-            status:false,
-            message:error
-        })
-      }else{
-          res.json({
-            status:true,
-            data:results,
-            message:'user registered sucessfully'
-        })
-      }
-    });
+    }
+    return true;
+  }
 
-  })();
+  if(validate(req.body)){
+    (async function(){
+
+      const myPlaintextPassword = req.body.password;
+      const saltRounds = 10;
+      var hash = await bcrypt.hash(myPlaintextPassword, saltRounds);
+
+      var users = {
+          "name":req.body.name,
+          "email":req.body.email,
+          "password":hash,
+          "userlevel":req.body.userlevel,
+      };
+
+      connection.query('INSERT INTO users SET ?',users, function (error, results, fields) {
+          if (error) {
+            res.json({
+                status:false,
+                message:"Email address already exists"
+            });
+          }else{
+              res.json({
+                status:true,
+                data:results,
+                message:'user registered sucessfully'
+            });
+          }
+        });
+
+      })();
+  }
+
 
 }

@@ -26,7 +26,7 @@ api.get('/', function(req, res) {
 });
 
 //route to handle user registration
-api.post('/register',regController.register);
+api.post('/register', regController.register);
 // router.post('/login',controller.login);
 app.use('/api', api);
 app.listen(5000);
