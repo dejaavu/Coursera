@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '../../../node_modules/@ionic/angular';
 
+import { HttpClient } from '@angular/common/http';
+
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 
@@ -15,12 +17,13 @@ export class RegModalPage implements OnInit {
   emailset=0;
   pwdset=0;
   pwdagainset=0;
-  select=0;
+  userlevelset=0;
 
   constructor(private navParams: NavParams,
   			      private modalSignUpController: ModalController,
               public alertController: AlertController,
-              private toastController: ToastController) { }
+              private toastController: ToastController,
+              private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -56,10 +59,19 @@ export class RegModalPage implements OnInit {
   }
 
   onSubmit(form){
-    if(this.select){
+    if(this.userlevelset){
     	this.modalSignUpController.dismiss();
       this.presentToast("Registration Successful");
-      console.log(form.value);
+      this.http.post("http://localhost:5000/api/register",form.value,{ })
+      .subscribe(
+        form => {
+          console.log("OK");
+       },
+        err => {
+          console.log(err);
+        }
+      );
+
     }
   }
 

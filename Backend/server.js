@@ -10,19 +10,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "authorization, access-control-allow-headers, Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-var router = express.Router();
+var api = express.Router();
 
 // test route
-router.get('/', function(req, res) {
-    res.json({ message: 'welcome to our upload module apis' });
+api.get('/', function(req, res) {
+    res.json({
+      message: 'welcome to our apis',
+      apis: 'register'
+    });
 });
 
 //route to handle user registration
-router.post('/register',regController.register);
+api.post('/register',regController.register);
 // router.post('/login',controller.login);
-app.use('/api', router);
+app.use('/api', api);
 app.listen(5000);
