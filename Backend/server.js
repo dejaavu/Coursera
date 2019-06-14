@@ -2,7 +2,7 @@ var express    = require("express");
 var bodyParser = require('body-parser');
 
 var regController = require('./controller/register');
-// var logController = require('./controller/login');
+var logController = require('./controller/login');
 
 var conn = require('./config/config');
 var app = express();
@@ -27,6 +27,8 @@ api.get('/', function(req, res) {
 
 //route to handle user registration
 api.post('/register', regController.register);
-// router.post('/login',controller.login);
+//route to handle user login
+api.post('/login',logController.login);
+
 app.use('/api', api);
 app.listen(5000);

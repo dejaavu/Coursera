@@ -12,6 +12,6 @@ export class RegService {
 
   register(form){
     return this.http.post("http://localhost:5000/api/register",form.value,{ });
-
   }
+  
 }
