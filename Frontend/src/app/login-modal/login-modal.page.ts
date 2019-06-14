@@ -4,6 +4,8 @@ import { NavParams, ModalController } from '../../../node_modules/@ionic/angular
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 
+import { LoginService } from '../services/login.service';
+
 @Component({
   selector: 'app-login-modal',
   templateUrl: './login-modal.page.html',
@@ -18,7 +20,8 @@ export class LoginModalPage implements OnInit {
   constructor(private navParams: NavParams,
               private modalLoginController: ModalController,
               public alertController: AlertController,
-              private toastController: ToastController) {
+              private toastController: ToastController,
+              private loginService: LoginService) {
   }
 
   ngOnInit() {
@@ -47,8 +50,21 @@ export class LoginModalPage implements OnInit {
     }
 
   onSubmit(form){
-    this.modalLoginController.dismiss();
-    this.presentToast("Login Successful");
+    this.loginService.login(form)
+    .subscribe(
+      res => {
+        if(res["status"]){
+          this.presentToast("Login Successful");
+          this.modalLoginController.dismiss();
+        } else {
+          this.presentToast(`Login Unsuccessful : ${ res["message"] }`);
+        }
+
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      });
   }
 
   closeLoginModal(){
