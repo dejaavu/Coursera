@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '../../../node_modules/@ionic/angular';
 
-import { HttpClient } from '@angular/common/http';
-
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+
+import { RegService } from '../services/reg.service';
 
 @Component({
   selector: 'app-reg-modal',
@@ -23,7 +23,7 @@ export class RegModalPage implements OnInit {
   			      private modalSignUpController: ModalController,
               public alertController: AlertController,
               private toastController: ToastController,
-              private http: HttpClient) { }
+              private regService: RegService) { }
 
   ngOnInit() {
   }
@@ -60,7 +60,7 @@ export class RegModalPage implements OnInit {
 
   onSubmit(form){
     if(this.userlevelset){
-      this.http.post("http://localhost:5000/api/register",form.value,{ })
+      this.regService.register(form)
       .subscribe(
         res => {
           if(res["status"]){
@@ -71,13 +71,11 @@ export class RegModalPage implements OnInit {
           }
 
           console.log(res);
-       },
+        },
         err => {
           console.log(err);
-        }
-      );
-
-    }
+        });
+      }
   }
 
   async presentToast(msg: string) {
