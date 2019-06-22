@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-buttons slot="start" style="margin-right:30px; margin-left:30px">
+            <a>
+              <h1>Coursera</h1>
+            </a>
+          </ion-buttons>
+        </ion-col>
+        <ion-col>
+            <ion-buttons slot="start">
+              <ion-searchbar></ion-searchbar>
+            </ion-buttons>
+        </ion-col>
+        <ion-col>
+          <ion-buttons slot="end" style="margin-right: 10px">
+            <a>
+              <img style="width:40px; height:40px" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1">
+            </a>
+          </ion-buttons>
+          <ion-buttons slot="end" style="margin-right:30px">
+            <a>
+              {{user.name}}
+            </a>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col size-xs = "12" size-sm = "12" size-md="12" size-lg ="7" size-xl = "7">
+        <h1>Edit my profile</h1>
+
+        <div class="line"></div>
+
+        <h2>Introduction</h2>
+        <p>Let the Coursera community of other learners and instructors recognize you.</p>
+
+        <form [formGroup]="form1">
+
+          <h4 style="font-weight: bold"> Full name</h4>
+          <ion-input name="name" [formControlName]="name"></ion-input>
+
+          <h4 style="font-weight: bold">Profile Photo</h4>
+          <a>
+            <img style="width:60px; height:60px" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1">
+          </a>
+          <p>Maximum size of 1MB. JPG, GIF, or PNG.</p>
+
+          <div class="line"></div>
+
+          <h2>Details About You</h2>
+          <p>Introduce yourself to the Coursera community. Connect with learners like you to grow your network.</p>
+
+          <h4 style="font-weight: bold">About Me</h4>
+          <ion-input name="info" [formControlName]="info"></ion-input>
+
+          <h4 style="font-weight: bold">Location</h4>
+          <ion-input name="location" [formControlName]="location"></ion-input>
+
+          <h4 style="font-weight: bold">Top Skills</h4>
+          <ion-input name="skills" [formControlName]="skills"></ion-input>
+
+          <h4 style="font-weight: bold">Gender</h4>
+          <ion-radio-group [formControlName]="gender">
+            <ion-item>
+              <ion-label>Male</ion-label>
+              <ion-radio slot="start" value="male" checked></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Female</ion-label>
+              <ion-radio slot="start" value="female"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Other</ion-label>
+              <ion-radio slot="start" value="other"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+
+          <h4 style="font-weight: bold">Birthday</h4>
+          <ion-datetime placeholder="Enter your Date of Birth" [formControlName]="dateofbirth" display-format="DD/MMM/YYYY" min="1919" max="2000" picker-format="DD MMM YYYY" [(ngModel)]="dateofbirth"></ion-datetime>
+
+        </form>
+
+        <form [formGroup]="form2">
+
+          <h4 style="font-weight: bold; display: inline-block">Website URL</h4>
+          <ion-button style="display: inline-block" (click)="addWebsite()">Add Website link</ion-button>
+
+          <ion-item *ngFor="let control of form2.controls | keyvalue">
+            <div>
+              <ion-input [formControlName]="control.key" [(ngModel)]="control.value.value"></ion-input>
+              <ion-icon (click)="removeWebsite(control)" name="close-circle"></ion-icon>
+            </div>
+          </ion-item>
+
+        </form>
+
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

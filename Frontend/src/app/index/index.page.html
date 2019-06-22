@@ -1,9 +1,136 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>index</ion-title>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-buttons slot="start" style="margin-right:30px; margin-left:30px">
+            <a>
+              <h1>Coursera</h1>
+            </a>
+          </ion-buttons>
+        </ion-col>
+        <ion-col>
+            <ion-buttons slot="start">
+              <ion-searchbar></ion-searchbar>
+            </ion-buttons>
+        </ion-col>
+        <ion-col>
+          <ion-buttons slot="end" style="margin-right: 10px">
+            <a>
+              <img style="width:40px; height:40px" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1">
+            </a>
+          </ion-buttons>
+          <ion-buttons slot="end" style="margin-right:30px">
+            <a>
+              {{user.name}}
+            </a>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col size-xs = "12" size-sm = "12" size-md="12" size-lg ="6" size-xl = "6">
 
+        <br>
+        <br>
+        <br>
+
+        <div style="display: flex; justify-content: space-between">
+          <h1 style="margin-left:25px">
+            My Subscriptions
+          </h1>
+          <a style="margin-right:25px">
+            See all
+          </a>
+        </div>
+
+        <div class="line"></div>
+
+        <div>
+          <div *ngIf="leng>0">
+            <ion-card *ngFor="let course of userCourses | keyvalue; index as i ">
+              <div *ngIf="i<2">
+                <ion-card-header>
+                  <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+                  <ion-card-title>Card Title</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                  Keep close to Nature's heart... and break clear away, once in awhile,
+                  and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                </ion-card-content>
+              </div>
+            </ion-card>
+          </div>
+          <div *ngIf="leng===0">
+            Explore and subscribe to some courses
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between">
+          <h1 style="margin-left:25px">
+            Courses for your branch
+          </h1>
+          <a style="margin-right:25px">
+            See more
+          </a>
+        </div>
+
+        <div class="line"></div>
+
+        <div *ngIf="leng2>0">
+          <ion-card *ngFor="let course of userBranchCourses | keyvalue; index as i ">
+            <div *ngIf="i<2">
+              <ion-card-header>
+                <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+                <ion-card-title>Card Title</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                Keep close to Nature's heart... and break clear away, once in awhile,
+                and climb a mountain or spend a week in the woods. Wash your spirit clean.
+              </ion-card-content>
+            </div>
+          </ion-card>
+        </div>
+        <div *ngIf="leng2===0">
+          No relevant courses found
+        </div>
+
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer *ngIf="this.platform.width()>540px">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col size-xs = "3" size-sm = "3" size-md="3" size-lg ="3" size-xl = "3">
+        <a style="margin-left: 25px">About</a>
+        <br>
+        <br>
+        <br>
+        <a style="margin-left: 25px">Contact</a>
+        <br>
+      </ion-col>
+      <ion-col size-xs = "3" size-sm = "3" size-md="3" size-lg ="3" size-xl = "3">
+        <a style="display: flex; justify-content: flex-end; margin-right: 25px"><img src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg" alt="iosApp"></a>
+        <br>
+        <a style="display: flex; justify-content: flex-end; margin-right: 25px"><img src="https://prod-edxapp.edx-cdn.org/static/images/app/google_play_badge_45.6ea466e328da.png" alt="androidApp"></a>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
