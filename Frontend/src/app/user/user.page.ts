@@ -12,6 +12,12 @@ export class UserPage implements OnInit {
   public form2: FormGroup;
   private websiteCount: number = 0;
 
+  user = {
+    name: 'USER',
+    email: 'user@user.com',
+    branch: 'BranchTemp',
+  };
+
   constructor(public formBuilder: FormBuilder) {
     this.form1 = formBuilder.group({
 	        name: [''],
@@ -24,6 +30,7 @@ export class UserPage implements OnInit {
     this.form2 = formBuilder.group({
 
 	    });
+
   }
 
   ngOnInit() {
