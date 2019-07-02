@@ -1,11 +1,20 @@
 var express    = require("express");
 var bodyParser = require('body-parser');
+const session = require('express-session');
 
 var regController = require('./controller/register');
 var logController = require('./controller/login');
+var userController = require('./controller/user');
+var exploreController = require('./controller/explore');
 
 var conn = require('./config/config');
+
 var app = express();
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -28,7 +37,11 @@ api.get('/', function(req, res) {
 //route to handle user registration
 api.post('/register', regController.register);
 //route to handle user login
-api.post('/login',logController.login);
+api.post('/login', logController.login);
+//route to handle user data
+app.post('/user', userController.user);
+//route to handle explore subscriptions
+app.post('/explore', exploreController.explore);
 
 app.use('/api', api);
 app.listen(5000);

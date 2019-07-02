@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 var express=require("express");
 var connection = require('../config/config');
@@ -18,19 +17,12 @@ module.exports.login = function(req, res){
             var user = {
               email: req.body.email
             }
-            jwt.sign(user, 'privkeyMUSTCHANGELATER', { expiresIn: 15*60 }, (err,token) => {
-              if(err){
-                res.json({
-                  status:false,
-                  message: err
-                });
-              } else {
-                res.json({
-                  status: true,
-                  token: token
-                });
-              }
-            })
+            req.session.loggedin = true;
+            req.session.username = username;
+            res.json({
+              status:true,
+              message: "Login Successful"
+            });
           } else {
             res.json({
               status: false,

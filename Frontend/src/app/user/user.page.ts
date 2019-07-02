@@ -8,6 +8,12 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class UserPage implements OnInit {
 
+  user = {
+    name: 'USER',
+    email: 'user@user.com',
+    branch: 'BranchTemp',
+  };
+
   public form1: FormGroup;
   public form2: FormGroup;
   private websiteCount: number = 0;

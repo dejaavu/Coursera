@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <div id="list">
+      <ion-menu-button menu="homeList"></ion-menu-button>
+    </div>
+    <ion-title id="heading" text-center>
+      <a>Coursera</a>
+    </ion-title>
+    <ion-buttons id="search" slot="end">
+      <ion-searchbar></ion-searchbar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="display: inline-block;"  *ngFor="let category of categories">
+  <a>
+    category
+  </a>
+  <ion-icon name="arrow-right"></ion-icon>
+</ion-content>

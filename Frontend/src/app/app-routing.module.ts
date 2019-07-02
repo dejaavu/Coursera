@@ -6,6 +6,8 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'index', pathMatch: 'full', loadChildren: './index/index.module#IndexPageModule' },
   { path: 'user', loadChildren: './user/user.module#UserPageModule' },
+  { path: 'subscription', loadChildren: './subscription/subscription.module#SubscriptionPageModule' },
+  { path: 'explore', loadChildren: './explore/explore.module#ExplorePageModule' },
 ];
 
 @NgModule({
