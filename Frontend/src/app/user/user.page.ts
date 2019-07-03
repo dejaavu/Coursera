@@ -16,12 +16,6 @@ export class UserPage implements OnInit {
 
   public form1: FormGroup;
 
-  user = {
-    name: 'USER',
-    email: 'user@user.com',
-    branch: 'BranchTemp',
-  };
-
   constructor(public formBuilder: FormBuilder) {
     this.form1 = formBuilder.group({
 	        name: [''],

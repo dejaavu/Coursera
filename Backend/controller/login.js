@@ -22,7 +22,8 @@ module.exports.login = function(req, res){
             req.session.email = user.email;
             res.json({
               status: true,
-              message: "Login Successful"
+              message: "Login Successful",
+              session: req.session
             });
           } else {
             res.json({

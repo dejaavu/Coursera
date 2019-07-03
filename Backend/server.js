@@ -10,6 +10,19 @@ var exploreController = require('./controller/explore');
 var conn = require('./config/config');
 
 var app = express();
+
+//middleware to check login
+var sessionChecker = (req, res, next) => {
+    if (req.session.loggedin) {
+        next();
+    } else {
+        res.json({
+					status: false,
+					message: "User not logged in"
+				});
+    }
+};
+
 app.use(session({
 	secret: 'secret',
 	resave: true,
