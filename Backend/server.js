@@ -39,7 +39,7 @@ api.post('/register', regController.register);
 //route to handle user login
 api.post('/login', logController.login);
 //route to handle user data
-//api.post('/user', userController.user);
+api.post('/user', userController.user);
 //route to handle explore subscriptions
 //api.post('/explore', exploreController.explore);
 
