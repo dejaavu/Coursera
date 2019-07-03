@@ -15,8 +15,6 @@ export class UserPage implements OnInit {
   };
 
   public form1: FormGroup;
-  public form2: FormGroup;
-  private websiteCount: number = 0;
 
   user = {
     name: 'USER',
@@ -33,23 +31,10 @@ export class UserPage implements OnInit {
           gender: [''],
           dateofbirth: [''],
 	    });
-    this.form2 = formBuilder.group({
-
-	    });
 
   }
 
   ngOnInit() {
-  }
-
-  removeWebsite(control){
-    this.websiteCount--;
-    this.form2.removeControl(control.key);
-  }
-
-  addWebsite(){
-    this.websiteCount++;
-    this.form2.addControl('Website ' + this.websiteCount, new FormControl(''));
   }
 
 }

@@ -2,10 +2,11 @@ const bcrypt = require('bcrypt');
 
 var express=require("express");
 var connection = require('../config/config');
+var info = require('../config/info');
 
 module.exports.login = function(req, res){
 
-  connection.query('SELECT * from users WHERE email=?',req.body.email,function(error,results,fields){
+  connection.query('SELECT * from ? WHERE email=?', info.databse, req.body.email, function(error,results,fields){
       if(error){
         res.json({
           status: false,
@@ -18,9 +19,9 @@ module.exports.login = function(req, res){
               email: req.body.email
             }
             req.session.loggedin = true;
-            req.session.username = username;
+            req.session.email = user.email;
             res.json({
-              status:true,
+              status: true,
               message: "Login Successful"
             });
           } else {

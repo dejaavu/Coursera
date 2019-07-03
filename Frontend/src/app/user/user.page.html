@@ -85,26 +85,8 @@
             </ion-item>
           </ion-radio-group>
 
-
           <h4 style="font-weight: bold">Birthday</h4>
           <ion-datetime placeholder="Enter your Date of Birth" [formControlName]="dateofbirth" display-format="DD/MMM/YYYY" min="1919" max="2000" picker-format="DD MMM YYYY" [(ngModel)]="dateofbirth"></ion-datetime>
-
-        </form>
-
-        <form [formGroup]="form2">
-          <ion-toolbar>
-            <h4 style="font-weight: bold; display: inline-block">Website URL</h4>
-            <ion-buttons slot="end">
-              <ion-button style="display: inline-block" (click)="addWebsite()" color="primary" fill="outline">Add Website link</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-
-          <ion-item *ngFor="let control of form2.controls | keyvalue">
-            <div>
-              <ion-input [formControlName]="control.key" [(ngModel)]="control.value.value"></ion-input>
-              <ion-icon (click)="removeWebsite(control)" name="close-circle"></ion-icon>
-            </div>
-          </ion-item>
 
         </form>
 
