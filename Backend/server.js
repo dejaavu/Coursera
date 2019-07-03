@@ -39,9 +39,9 @@ api.post('/register', regController.register);
 //route to handle user login
 api.post('/login', logController.login);
 //route to handle user data
-app.post('/user', userController.user);
+//api.post('/user', userController.user);
 //route to handle explore subscriptions
-app.post('/explore', exploreController.explore);
+//api.post('/explore', exploreController.explore);
 
 app.use('/api', api);
 app.listen(5000);

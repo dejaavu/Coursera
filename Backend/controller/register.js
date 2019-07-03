@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 
-var express=require("express");
+var express = require("express");
 var connection = require('../config/config');
 
 module.exports.register = function(req, res){
@@ -48,13 +48,13 @@ module.exports.register = function(req, res){
           "userlevel":req.body.userlevel,
       };
 
-      connection.query('INSERT INTO ? SET ?',info.database, users, function (error, results, fields) {
+      connection.query('INSERT INTO users SET ?', users, function (error, results, fields) {
           if (error) {
             res.json({
                 status:false,
                 message:"Email address already exists"
             });
-          }else{
+          } else {
               res.json({
                 status:true,
                 data:results,
@@ -65,6 +65,5 @@ module.exports.register = function(req, res){
 
       })();
   }
-
 
 }

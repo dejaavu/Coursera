@@ -1,6 +1,6 @@
 {
-  host     : 'localhost',
-  user     : 'tirth',
-  password : 'ths01139',
-  database : 'loginsystem'
+  "host"     : "localhost",
+  "user"     : "root",
+  "password" : "aniketab",
+  "database" : "users"
 }
