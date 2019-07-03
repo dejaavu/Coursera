@@ -1,10 +1,7 @@
 var mysql = require('mysql');
-var conn = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'tirth',
-  password : 'ths01139',
-  database : 'loginsystem'
-});
+var info = require('info.json');
+
+var conn = mysql.createConnection(info);
 conn.connect(function(err){
 if(!err) {
     console.log("Database is connected ... nn");

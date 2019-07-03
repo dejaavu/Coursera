@@ -48,7 +48,7 @@ module.exports.register = function(req, res){
           "userlevel":req.body.userlevel,
       };
 
-      connection.query('INSERT INTO users SET ?',users, function (error, results, fields) {
+      connection.query('INSERT INTO ? SET ?',info.database, users, function (error, results, fields) {
           if (error) {
             res.json({
                 status:false,
@@ -58,8 +58,7 @@ module.exports.register = function(req, res){
               res.json({
                 status:true,
                 data:results,
-                message:"
-                User registered sucessfully"
+                message:"User registered sucessfully"
             });
           }
         });
