@@ -1,6 +1,7 @@
 var express    = require("express");
 var bodyParser = require('body-parser');
 const session = require('express-session');
+var multer  = require('multer');
 
 var regController = require('./controller/register');
 var logController = require('./controller/login');
@@ -10,6 +11,7 @@ var exploreController = require('./controller/explore');
 var conn = require('./config/config');
 
 var app = express();
+var upload = multer();
 
 //middleware to check login
 var sessionChecker = (req, res, next) => {
@@ -50,9 +52,9 @@ api.get('/', function(req, res) {
 //route to handle user registration
 api.post('/register', regController.register);
 //route to handle user login
-api.post('/login', logController.login);
+api.post('/login', upload.none(), logController.login);
 //route to handle user data
-api.post('/user', userController.user);
+api.put('/user', upload.none(), userController.user);
 //route to handle explore subscriptions
 //api.post('/explore', exploreController.explore);
 

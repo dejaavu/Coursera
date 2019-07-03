@@ -9,11 +9,10 @@ module.exports.user = function(req, res){
   function validate(form){
     if (form.name || form.info || form.gender || form.dateofbirth) {
       return true;
-      }
-    else {
+    } else {
       res.json({
         status:false,
-        message:"Input atleast a field"
+        message:"Input atleast one field"
       });
       return false;
     }
@@ -32,13 +31,13 @@ module.exports.user = function(req, res){
       if (error) {
         res.json({
             status:false,
-            message:"Email address already exists"
+            message:error
         });
-      }else{
+      } else {
           res.json({
             status:true,
             data:results,
-            message:"User registered sucessfully"
+            message:"Data updated"
         });
       }
     });

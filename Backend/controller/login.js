@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 
 var express = require("express");
 var connection = require('../config/config');
-var info = require('../config/info');
 
 module.exports.login = function(req, res){
 
