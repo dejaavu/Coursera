@@ -6,7 +6,7 @@ var multer  = require('multer');
 var regController = require('./controller/register');
 var logController = require('./controller/login');
 var userController = require('./controller/user');
-var exploreController = require('./controller/explore');
+var coursesController = require('./controller/courses');
 
 var conn = require('./config/config');
 
@@ -54,9 +54,9 @@ api.post('/register', regController.register);
 //route to handle user login
 api.post('/login', upload.none(), logController.login);
 //route to handle user data
-api.put('/user', upload.none(), userController.user);
+api.put('/user', sessionChecker, upload.none(), userController.user);
 //route to handle explore subscriptions
-//api.post('/explore', exploreController.explore);
+//api.post('/courses', coursesController.courses);
 
 app.use('/api', api);
 app.listen(5000);
