@@ -55,6 +55,7 @@ api.post('/register', regController.register);
 api.post('/login', upload.none(), logController.login);
 //route to handle user data
 api.put('/user', sessionChecker, upload.none(), userController.user);
+api.get('/user',sessionChecker,userController.userinfo)
 //route to handle explore subscriptions
 //api.post('/courses', coursesController.courses);
 

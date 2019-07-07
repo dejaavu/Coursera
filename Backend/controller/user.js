@@ -4,7 +4,7 @@ var express=require("express");
 var connection = require('../config/config');
 var info = require('../config/info');
 
-module.exports.user = function(req, res){
+const user = function(req, res){
 
   function validate(form){
     if (form.name || form.info || form.gender || form.dateofbirth) {
@@ -42,4 +42,25 @@ module.exports.user = function(req, res){
       }
     });
   }
+};
+
+const userinfo = function(req, res){
+  connection.query('SELECT * FROM users WHERE email=?', req.session.email, function (error, results, fields){
+    if (error) {
+      res.json({
+          status:false,
+          message:error
+      });
+    } else {
+      res.send({
+        results
+      });
+    }
+  }
+  );
+}
+
+module.exports = {
+  user,
+  userinfo
 }
