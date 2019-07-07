@@ -7,6 +7,7 @@ var regController = require('./controller/register');
 var logController = require('./controller/login');
 var userController = require('./controller/user');
 var coursesController = require('./controller/courses');
+var subscriptionController = require('./controller/subscription');
 
 var conn = require('./config/config');
 
@@ -55,8 +56,11 @@ api.post('/register', regController.register);
 api.post('/login', upload.none(), logController.login);
 //route to handle user data
 api.put('/user', sessionChecker, upload.none(), userController.user);
-//route to handle explore subscriptions
-//api.post('/courses', coursesController.courses);
+//route to handle subscriptions
+api.get('/subscription', sessionChecker, subscriptionController.subscription);
+api.post('/subscription/:id', sessionChecker, subscriptionController.addsub);
+api.delete('/subscription/:id', sessionChecker, subscriptionController.removesub);
+
 
 app.use('/api', api);
 app.listen(5000);

@@ -27,7 +27,7 @@ module.exports.user = function(req, res){
         "email":req.session.email,
     };
 
-    connection.query('INSERT INTO userinfo SET ?',userinfo, function (error, results, fields){
+    connection.query('INSERT INTO users SET ?',userinfo, function (error, results, fields){
       if (error) {
         res.json({
             status:false,
