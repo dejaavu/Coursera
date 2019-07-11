@@ -56,14 +56,16 @@ api.post('/register', regController.register);
 api.post('/login', upload.none(), logController.login);
 //route to handle user data
 api.put('/user', sessionChecker, upload.none(), userController.user);
+api.get('/user',sessionChecker,userController.userinfo)
 //route to handle subscriptions
 api.get('/subscription', sessionChecker, subscriptionController.subscription);
 api.post('/subscription/:id', sessionChecker, subscriptionController.addsub);
 api.delete('/subscription/:id', sessionChecker, subscriptionController.removesub);
-
-api.get('/user',sessionChecker,userController.userinfo)
 //route to handle explore courses
-//api.post('/courses', coursesController.courses);
+api.post('/courses/:id', sessionChecker, upload.none(),coursesController.addcourses);
+api.get('/courses/:id', sessionChecker,coursesController.courseinfo);
+api.put('/courses/:id', sessionChecker, upload.none(),coursesController.updatecourse);
+api.delete('/courses/:id', sessionChecker,coursesController.deletecourse);
 
 app.use('/api', api);
 app.listen(5000);
