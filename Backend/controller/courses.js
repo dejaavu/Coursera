@@ -53,8 +53,10 @@ module.exports.courseinfo = function(req, res){
           message:error
       });
     } else if(results.length>0) {
-      res.send({
-        results
+      res.json({
+        status: true,
+        data: results,
+        message: "Course retrieved"
       });
     } else {
       res.json({
@@ -115,4 +117,30 @@ module.exports.deletecourse = function(req, res) {
       });
     }
   });
+}
+
+module.exports.getcourses = function(req, res){
+  if(req.query.branch){
+    connection.query('SELECT * FROM courses where branch=?', req.query.branch, function(error, results, fields){
+      if(error){
+        res.json({
+          status: false,
+          message: error
+        });
+      } else {
+        if(results.length>0){
+          res.json({
+            status: true,
+            data: results,
+            message: "Courses retrieved"
+          });
+        } else {
+          res.json({
+            status: false,
+            message: "No courses found"
+          });
+        }
+      }
+    });
+  }
 }
