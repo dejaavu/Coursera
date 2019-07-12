@@ -1,21 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start" style="margin-right:30px; margin-left:30px">
+    <ion-buttons slot="start" style="margin-right: 1%; margin-left:1%">
       <a>
         <h1>Coursera</h1>
       </a>
     </ion-buttons>
-      <ion-buttons slot="start">
-        <ion-searchbar></ion-searchbar>
-      </ion-buttons>
-    <ion-buttons slot="end" style="margin-right: 10px">
-      <a>
-        <img style="width:40px; height:40px" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1">
+    <ion-buttons slot="start">
+      <ion-searchbar placeholder=" "></ion-searchbar>
+    </ion-buttons>
+    <ion-buttons slot="end" style="margin-right: 1%">
+      <a *ngIf="this.platform.width()>540px">
+        <img style="width:40px" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1">
       </a>
     </ion-buttons>
-    <ion-buttons slot="end" style="margin-right:30px">
+    <ion-buttons slot="end" style="margin-right: 1%">
       <a>
-        {{user.name}}
+        <h6>
+          {{user.name}}
+        </h6>
       </a>
     </ion-buttons>
   </ion-toolbar>
@@ -32,13 +34,15 @@
         <br>
         <br>
 
-        <div style="display: flex; justify-content: space-between">
-          <h1 style="margin-left:25px">
+        <div>
+          <h1 style="float: left">
             My Subscriptions
           </h1>
-          <a style="margin-right:25px">
-            See all
-          </a>
+          <h5 style="float: right">
+            <a>
+              See all
+            </a>
+          </h5>
         </div>
 
         <div class="line"></div>
@@ -65,12 +69,14 @@
         </div>
 
         <div style="display: flex; justify-content: space-between">
-          <h1 style="margin-left:25px">
+          <h1 style="float: left">
             Courses for your branch
           </h1>
-          <a style="margin-right:25px">
-            See more
-          </a>
+          <h5 style="float: right">
+            <a>
+              See more
+            </a>
+          </h5>
         </div>
 
         <div class="line"></div>
@@ -99,28 +105,28 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
 
-<ion-footer *ngIf="this.platform.width()>540px">
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-      </ion-col>
-      <ion-col size-xs = "3" size-sm = "3" size-md="3" size-lg ="3" size-xl = "3">
-        <a style="margin-left: 25px">About</a>
-        <br>
-        <br>
-        <br>
-        <a style="margin-left: 25px">Contact</a>
-        <br>
-      </ion-col>
-      <ion-col size-xs = "3" size-sm = "3" size-md="3" size-lg ="3" size-xl = "3">
-        <a style="display: flex; justify-content: flex-end; margin-right: 25px"><img src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg" alt="iosApp"></a>
-        <br>
-        <a style="display: flex; justify-content: flex-end; margin-right: 25px"><img src="https://prod-edxapp.edx-cdn.org/static/images/app/google_play_badge_45.6ea466e328da.png" alt="androidApp"></a>
-      </ion-col>
-      <ion-col>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-footer>
+  <div *ngIf="this.platform.width()>540px">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col size-xs = "3" size-sm = "3" size-md="3" size-lg ="3" size-xl = "3">
+          <a style="margin-left: 25px">About</a>
+          <br>
+          <br>
+          <br>
+          <a style="margin-left: 25px">Contact</a>
+          <br>
+        </ion-col>
+        <ion-col size-xs = "3" size-sm = "3" size-md="3" size-lg ="3" size-xl = "3">
+          <a style="display: flex; justify-content: flex-end; margin-right: 25px"><img src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg" alt="iosApp"></a>
+          <br>
+          <a style="display: flex; justify-content: flex-end; margin-right: 25px"><img src="https://prod-edxapp.edx-cdn.org/static/images/app/google_play_badge_45.6ea466e328da.png" alt="androidApp"></a>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
