@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-explore',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExplorePage implements OnInit {
 
-  constructor() { }
+  user = {
+    name: 'USER',
+    email: 'user@user.com',
+    branch: 'BranchTemp',
+  };
+
+  constructor(private platform: Platform) { }
 
   ngOnInit() {
   }
