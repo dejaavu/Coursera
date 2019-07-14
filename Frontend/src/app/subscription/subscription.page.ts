@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-subscription',
@@ -7,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubscriptionPage implements OnInit {
 
-  categories;
+  user = {
+    name: 'USER',
+    email: 'user@user.com',
+    branch: 'BranchTemp',
+  };
 
-  constructor() {
-    this.categories=['category1','category2'];
-  }
+  constructor(private platform: Platform) { }
 
   ngOnInit() {
   }
