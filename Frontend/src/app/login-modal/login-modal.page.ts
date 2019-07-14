@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, ModalController } from '../../../node_modules/@ionic/angular';
+
+import { ModalController } from '../../../node_modules/@ionic/angular';
 
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 
 import { LoginService } from '../services/login.service';
+
+import { ActivatedRoute, RouterStateSnapshot, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-modal',
@@ -17,11 +20,12 @@ export class LoginModalPage implements OnInit {
   emailset=0;
   pwdset=0;
 
-  constructor(private navParams: NavParams,
-              private modalLoginController: ModalController,
+  constructor(private modalLoginController: ModalController,
               public alertController: AlertController,
               private toastController: ToastController,
-              private loginService: LoginService) {
+              private loginService: LoginService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -56,6 +60,7 @@ export class LoginModalPage implements OnInit {
         if(res["status"]){
           this.presentToast("Login Successful");
           this.modalLoginController.dismiss();
+          this.router.navigateByUrl(this.route.snapshot.queryParams['returnTo'] ||  '/index');
         } else {
           this.presentToast(`Login Unsuccessful : ${ res["message"] }`);
         }

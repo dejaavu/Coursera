@@ -44,10 +44,17 @@ var api = express.Router();
 
 // test route
 api.get('/', function(req, res) {
+
+  if(req.session.loggedin){
     res.json({
-      message: 'welcome to our apis',
-      apis: 'register'
+      status: true
     });
+  } else {
+    res.json({
+      status: false
+    });
+  }
+  
 });
 
 //route to handle user registration
