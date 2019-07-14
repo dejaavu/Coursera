@@ -10,17 +10,19 @@
               <h1>Coursera</h1>
             </a>
           </ion-buttons>
-            <ion-buttons slot="start">
-              <ion-searchbar></ion-searchbar>
-            </ion-buttons>
+          <ion-buttons slot="start">
+            <ion-searchbar placeholder=" "></ion-searchbar>
+          </ion-buttons>
           <ion-buttons slot="end" style="margin-right: 1%">
             <a *ngIf="this.platform.width()>540px">
               <img style="width:40px" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1">
             </a>
           </ion-buttons>
-          <ion-buttons slot="end" style="margin-right:1%">
+          <ion-buttons slot="end" style="margin-right: 1%">
             <a>
-              {{user.name}}
+              <h6>
+                {{user.name}}
+              </h6>
             </a>
           </ion-buttons>
         </ion-toolbar>

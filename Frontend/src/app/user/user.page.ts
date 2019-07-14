@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-user',
@@ -16,7 +17,7 @@ export class UserPage implements OnInit {
 
   public form1: FormGroup;
 
-  constructor(public formBuilder: FormBuilder) {
+  constructor(public formBuilder: FormBuilder, private platform: Platform) {
     this.form1 = formBuilder.group({
 	        name: [''],
 	        info: [''],
