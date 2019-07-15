@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col size-xs = "12" size-sm = "12" size-md="12" size-lg ="7" size-xl = "7">
+        <ion-toolbar>
+          <ion-buttons slot="start" style="margin-right: 1%; margin-left:1%">
+            <a>
+              <h1>Coursera</h1>
+            </a>
+          </ion-buttons>
+          <ion-buttons slot="start">
+            <ion-searchbar placeholder=" "></ion-searchbar>
+          </ion-buttons>
+          <ion-buttons slot="end" style="margin-right: 1%">
+            <a *ngIf="this.platform.width()>540px">
+              <img style="width:40px" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1">
+            </a>
+          </ion-buttons>
+          <ion-buttons slot="end" style="margin-right: 1%">
+            <a>
+              <h6>
+                {{user.name}}
+              </h6>
+            </a>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content>
+
+</ion-content>

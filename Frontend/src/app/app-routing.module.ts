@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'explore',
     loadChildren: './explore/explore.module#ExplorePageModule',
     canActivate: [AuthGuard]},
+  { path: 'branch', loadChildren: './branch/branch.module#BranchPageModule' },
 ];
 
 @NgModule({

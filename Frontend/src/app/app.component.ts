@@ -9,12 +9,22 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { RegModalPage } from './reg-page-modal/reg-page-modal.page';
 import { LoginModalPage } from './login-modal/login-modal.page';
 
+import { LoginService } from './services/login.service';
+
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, Route } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
+  user = {
+    name: 'USER',
+    email: 'user@user.com',
+    branch: 'BranchTemp',
+  };
 
   constructor(
     private platform: Platform,
@@ -23,7 +33,8 @@ export class AppComponent {
     private nav: NavController,
     private modalSignUpController: ModalController,
     private modalLoginController: ModalController,
-    private menucontroller: MenuController
+    private menucontroller: MenuController,
+    private loginService: LoginService, private router: Router
   ) {
     this.initializeApp();
   }
@@ -48,6 +59,7 @@ export class AppComponent {
       component: LoginModalPage,
       backdropDismiss: false,
     });
+    this.menucontroller.close(),
     modalLogin.present();
   }
 
