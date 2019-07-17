@@ -10,6 +10,7 @@ import { RegModalPage } from './reg-page-modal/reg-page-modal.page';
 import { LoginModalPage } from './login-modal/login-modal.page';
 
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, Route } from '@angular/router';
+import { LogoutService } from './services/logout.service';
 
 
 @Component({
@@ -31,8 +32,9 @@ export class AppComponent {
     private nav: NavController,
     private modalSignUpController: ModalController,
     private modalLoginController: ModalController,
-    private menucontroller: MenuController,
-    private router: Router
+    private menuController: MenuController,
+    private router: Router,
+    private logoutService: LogoutService
   ) {
     this.initializeApp();
   }
@@ -57,8 +59,12 @@ export class AppComponent {
       component: LoginModalPage,
       backdropDismiss: false,
     });
-    this.menucontroller.close(),
+    this.menuController.close(),
     modalLogin.present();
   }
 
+  logout(){
+    this.menuController.close();
+    this.logoutService.logout();
+  }
 }

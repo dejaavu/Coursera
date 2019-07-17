@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { LogoutService } from '../services/logout.service';
 
+import { MenuController } from '@ionic/angular';
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.page.html',
@@ -39,7 +41,11 @@ export class IndexPage implements OnInit {
 
   leng2 = Object.keys(this.userBranchCourses).length;
 
-  constructor(private platform: Platform, private logoutService: LogoutService) {
+  constructor(private platform: Platform,
+              private logoutService: LogoutService,
+              private menuController: MenuController
+            ){
+    menuController.enable(true);
 
   }
 
@@ -47,4 +53,14 @@ export class IndexPage implements OnInit {
 
   }
 
+  openMenu(event){
+    if(event==='home'){
+      this.menuController.enable(true,'homeList');
+      this.menuController.enable(false,'userList');
+    } else {
+      this.menuController.enable(true,'userList');
+      this.menuController.enable(false,'homeList');
+    }
+    this.menuController.toggle();
+  }
 }

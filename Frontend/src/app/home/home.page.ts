@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { MenuController } from '@ionic/angular';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -7,7 +9,18 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {
+  constructor(private menuController: MenuController) {
+    menuController.enable(true);
   }
 
+  openMenu(event){
+    if(event==='home'){
+      this.menuController.enable(true,'homeList');
+      this.menuController.enable(false,'userList');
+    } else {
+      this.menuController.enable(true,'userList');
+      this.menuController.enable(false,'homeList');
+    }
+    this.menuController.toggle();
+  }
 }
