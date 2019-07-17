@@ -9,7 +9,7 @@ import { LoginService } from '../services/login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class HomeGuard implements CanActivate {
 
   constructor(private loginService: LoginService, private router: Router, private http: HttpClient) {
   }
@@ -19,12 +19,11 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Promise<boolean | UrlTree>{
 
       if(await this.loginService.checkLogin()){
-        return true;
-      } else {
-        this.router.navigate(['/home'],{ queryParams: { returnTo: state.url } });
+        this.router.navigate(['/index']);
         return false;
+      } else {
+        return true;
       }
 
     }
-
 }

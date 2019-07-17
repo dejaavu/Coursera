@@ -7,7 +7,7 @@ import { ToastController } from '@ionic/angular';
 
 import { LoginService } from '../services/login.service';
 
-import { ActivatedRoute, RouterStateSnapshot, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-modal',
@@ -19,6 +19,7 @@ export class LoginModalPage implements OnInit {
 
   emailset=0;
   pwdset=0;
+  returnUrl;
 
   constructor(private modalLoginController: ModalController,
               public alertController: AlertController,
@@ -29,6 +30,7 @@ export class LoginModalPage implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   async alertShow() {
@@ -58,14 +60,13 @@ export class LoginModalPage implements OnInit {
     .subscribe(
       res => {
         if(res["status"]){
-          this.presentToast("Login Successful");
+          this.presentToast(`Login Successful`);
           this.modalLoginController.dismiss();
-          this.router.navigateByUrl(this.route.snapshot.queryParams['returnTo'] ||  '/index');
+          this.router.navigate(['/index']);
         } else {
           this.presentToast(`Login Unsuccessful : ${ res["message"] }`);
         }
 
-        console.log(res);
       },
       err => {
         console.log(err);

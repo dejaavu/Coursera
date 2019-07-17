@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { LogoutService } from '../services/logout.service';
 
 @Component({
   selector: 'app-index',
@@ -38,8 +39,8 @@ export class IndexPage implements OnInit {
 
   leng2 = Object.keys(this.userBranchCourses).length;
 
-  constructor(private platform: Platform) {
-    
+  constructor(private platform: Platform, private logoutService: LogoutService) {
+
   }
 
   ngOnInit() {

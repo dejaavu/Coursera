@@ -9,8 +9,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { RegModalPage } from './reg-page-modal/reg-page-modal.page';
 import { LoginModalPage } from './login-modal/login-modal.page';
 
-import { LoginService } from './services/login.service';
-
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, Route } from '@angular/router';
 
 
@@ -34,7 +32,7 @@ export class AppComponent {
     private modalSignUpController: ModalController,
     private modalLoginController: ModalController,
     private menucontroller: MenuController,
-    private loginService: LoginService, private router: Router
+    private router: Router
   ) {
     this.initializeApp();
   }

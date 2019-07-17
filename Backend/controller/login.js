@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 
 var express = require("express");
+var session = require('express-session');
 var connection = require('../config/config');
 
 module.exports.login = function(req, res){
@@ -14,15 +15,11 @@ module.exports.login = function(req, res){
       } else {
         if(results.length>0){
           if(bcrypt.compareSync(req.body.password,results[0].password)){
-            var user = {
-              email: req.body.email
-            }
             req.session.loggedin = true;
-            req.session.email = user.email;
+            req.session.email = req.body.email;
             res.json({
               status: true,
               message: "Login Successful",
-              session: req.session
             });
           } else {
             res.json({

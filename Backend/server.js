@@ -1,10 +1,13 @@
 var express    = require("express");
 var bodyParser = require('body-parser');
-const session = require('express-session');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var multer  = require('multer');
+var cors = require('cors');
 
 var regController = require('./controller/register');
-var logController = require('./controller/login');
+var loginController = require('./controller/login');
+var logoutController = require('./controller/logout');
 var userController = require('./controller/user');
 var coursesController = require('./controller/courses');
 var subscriptionController = require('./controller/subscription');
@@ -16,7 +19,7 @@ var upload = multer();
 
 //middleware to check login
 var sessionChecker = (req, res, next) => {
-    if (req.session.loggedin) {
+    if (req.session.cookie && req.session.loggedin) {
         next();
     } else {
         res.json({
@@ -26,44 +29,60 @@ var sessionChecker = (req, res, next) => {
     }
 };
 
+app.use(cors({origin: [
+  "http://localhost:8100"
+], credentials: true}));
+
 app.use(session({
+  name: 'user_sid',
 	secret: 'secret',
 	resave: true,
-	saveUninitialized: true
+	saveUninitialized: true,
+  cookie: {
+    path: '/',
+    secure:false,
+    expires: false
+  }
+}));
+
+// initialize cookie-parser to allow us access the cookies stored in the browser.
+app.use(cookieParser());
+
+app.use(session({
+  name: 'user_sid',
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true,
+  cookie: {
+    path: '/',
+    secure:false,
+    expires: false
+  }
 }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "authorization, access-control-allow-headers, Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
 var api = express.Router();
 
 // test route
-api.get('/', function(req, res) {
+api.get('/', sessionChecker, function(req, res) {
 
-  if(req.session.loggedin){
-    res.json({
-      status: true
-    });
-  } else {
-    res.json({
-      status: false
-    });
-  }
-  
+  res.json({
+    status: true,
+    message: "Welcome"
+  });
+
 });
 
 //route to handle user registration
 api.post('/register', regController.register);
 //route to handle user login
-api.post('/login', upload.none(), logController.login);
+api.post('/login', upload.none(), loginController.login);
+//route to handle user logout
+api.get('/logout', logoutController.logout);
 //route to handle user data
 api.put('/user', sessionChecker, upload.none(), userController.user);
-api.get('/user',sessionChecker,userController.userinfo)
+api.get('/user',sessionChecker, userController.userinfo);
 //route to handle subscriptions
 api.get('/subscription', sessionChecker, subscriptionController.subscription);
 api.post('/subscription/:id', sessionChecker, subscriptionController.addsub);
