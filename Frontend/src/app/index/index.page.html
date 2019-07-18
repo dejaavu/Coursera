@@ -6,9 +6,11 @@
         </ion-col>
         <ion-col size-xs = "12" size-sm = "12" size-md="12" size-lg ="6.5" size-xl = "6.5">
           <ion-toolbar>
-            <ion-button slot="start" (click)="openMenu('user')"><ion-icon name="menu"></ion-icon></ion-button>
+            <ion-buttons slot="start">
+              <ion-menu-button></ion-menu-button>
+            </ion-buttons>
             <ion-buttons slot="start" style="margin-right:10%; margin-left: 1%">
-              <a>
+              <a routerLink="/index" style="text-decoration:none">
                 <h1 style="padding-bottom:10px">Coursera</h1>
               </a>
             </ion-buttons>
@@ -23,29 +25,19 @@
     </ion-grid>
   </div>
   <div *ngIf="this.platform.width()<540px">
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-        </ion-col>
-        <ion-col size-xs = "12" size-sm = "12" size-md="12" size-lg ="6.5" size-xl = "6.5">
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-menu-button menu="userList"></ion-menu-button>
-            </ion-buttons>
-            <ion-buttons slot="start" style="margin-left: 1%">
-              <a>
-                <h1 style="padding-bottom:10px">Coursera</h1>
-              </a>
-            </ion-buttons>
-            <ion-buttons slot="start">
-              <ion-searchbar placeholder=" "></ion-searchbar>
-            </ion-buttons>
-          </ion-toolbar>
-        </ion-col>
-        <ion-col>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button menu="userList"></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="start" style="margin-right:2%">
+        <a routerLink="/index" style="text-decoration:none">
+          <h1 style="padding-bottom:10px">Coursera</h1>
+        </a>
+      </ion-buttons>
+      <ion-buttons slot="start">
+        <ion-searchbar placeholder=" "></ion-searchbar>
+      </ion-buttons>
+    </ion-toolbar>
   </div>
 </ion-header>
 
@@ -65,7 +57,7 @@
             My Subscriptions
           </h1>
           <h5 style="float: right">
-            <a>
+            <a routerLink="/subscription"style="text-decoration:none">
               See all
             </a>
           </h5>
@@ -75,17 +67,14 @@
 
         <div>
           <div *ngIf="leng>0">
-            <ion-card *ngFor="let course of userCourses | keyvalue; index as i ">
+            <ion-card *ngFor="let course of userCourses; index as i"  routerLink="/branch/{{user.branch}}" [queryParams]="{id:course.id}" style="text-decoration:none">
               <div *ngIf="i<2">
                 <ion-card-header>
-                  <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-                  <ion-card-title>Card Title</ion-card-title>
+                  <ion-card-subtitle>{{course.subtitle}}</ion-card-subtitle>
+                  <ion-card-title>{{course.title}}</ion-card-title>
                 </ion-card-header>
 
-                <ion-card-content>
-                  Keep close to Nature's heart... and break clear away, once in awhile,
-                  and climb a mountain or spend a week in the woods. Wash your spirit clean.
-                </ion-card-content>
+                <ion-card-content>{{course.content}}</ion-card-content>
               </div>
             </ion-card>
           </div>
@@ -99,7 +88,7 @@
             Courses for your branch
           </h1>
           <h5 style="float: right">
-            <a>
+            <a routerLink="/branch/{{user.branch}}" style="text-decoration:none">
               See more
             </a>
           </h5>
@@ -108,17 +97,14 @@
         <div class="line"></div>
 
         <div *ngIf="leng2>0">
-          <ion-card *ngFor="let course of userBranchCourses | keyvalue; index as i ">
+          <ion-card *ngFor="let course of userBranchCourses;index as i" routerLink="/branch/{{user.branch}}" [queryParams]="{id:course.id}" style="text-decoration:none">
             <div *ngIf="i<2">
               <ion-card-header>
-                <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-                <ion-card-title>Card Title</ion-card-title>
+                <ion-card-subtitle>{{course.subtitle}}</ion-card-subtitle>
+                <ion-card-title>{{course.title}}</ion-card-title>
               </ion-card-header>
 
-              <ion-card-content>
-                Keep close to Nature's heart... and break clear away, once in awhile,
-                and climb a mountain or spend a week in the woods. Wash your spirit clean.
-              </ion-card-content>
+              <ion-card-content>{{course.content}}</ion-card-content>
             </div>
           </ion-card>
         </div>

@@ -1,13 +1,24 @@
 <link rel="stylesheet" type="text/css" href="/home.page.scss">
 
 <ion-header style="color: blue">
+
   <ion-toolbar>
-      <ion-button style="margin-top:1%" (click)="openMenu('home')"> <ion-icon name="menu"></ion-icon></ion-button>
-    <ion-title id="heading" text-center>
-      <a href="#" style="text-decoration: none">
-        <h1>Coursera</h1>
-      </a>
-    </ion-title>
+    <div *ngIf="this.platform.width()>540px">
+      <ion-button style="margin-top:1.3%" (click)="openMenu()"> <ion-icon name="menu"></ion-icon></ion-button>
+      <ion-title id="heading" text-center>
+        <a href="#" style="text-decoration: none">
+          <h1>Coursera</h1>
+        </a>
+      </ion-title>
+    </div>
+    <div *ngIf="this.platform.width()<540px">
+      <ion-button style="margin-top:5%" (click)="openMenu()"> <ion-icon name="menu"></ion-icon></ion-button>
+      <ion-title id="heading" text-center>
+        <a href="#" style="text-decoration: none">
+          <h1>Coursera</h1>
+        </a>
+      </ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 

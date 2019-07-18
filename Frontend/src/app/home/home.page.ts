@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Platform } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -9,18 +9,11 @@ import { MenuController } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor(private menuController: MenuController) {
-    menuController.enable(true);
+  constructor(public menuController: MenuController,private platform: Platform) {
   }
 
-  openMenu(event){
-    if(event==='home'){
-      this.menuController.enable(true,'homeList');
-      this.menuController.enable(false,'userList');
-    } else {
-      this.menuController.enable(true,'userList');
-      this.menuController.enable(false,'homeList');
-    }
+  async openMenu(){
+    await this.menuController.enable(true,'homeList');
     this.menuController.toggle();
   }
 }

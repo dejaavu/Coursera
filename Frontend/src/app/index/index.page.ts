@@ -23,44 +23,78 @@ export class IndexPage implements OnInit {
     speed: 400
   };
 
-  userCourses = {
-    course1: "course1",
-    course2: "course2",
-    course3: "course3",
-    course4: "course4"
-  };
+  userCourses = [
+            {
+              title:"course1",
+              subtitle:"course1",
+              content:"welcome to the course",
+              id:"1"
+            },
+            {
+              title:"course2",
+              subtitle:"course2",
+              content:"welcome to the course",
+              id:"2"
+            },
+            {
+              title:"course3",
+              subtitle:"course3",
+              content:"welcome to the course",
+              id:"3"
+            },
+            {
+              title:"course4",
+              subtitle:"course4",
+              content:"welcome to the course",
+              id:"4"
+            },
+  ];
 
-  leng = Object.keys(this.userCourses).length;
+  leng = this.userCourses.length;
 
-  userBranchCourses = {
-    course1: "course1",
-    course2: "course2",
-    course3: "course3",
-    course4: "course4"
-  };
+  userBranchCourses = [
+            {
+              title:"course1",
+              subtitle:"course1",
+              content:"welcome to the course",
+              id:"1"
+            },
+            {
+              title:"course2",
+              subtitle:"course2",
+              content:"welcome to the course",
+              id:"2"
+            },
+            {
+              title:"course3",
+              subtitle:"course3",
+              content:"welcome to the course",
+              id:"3"
+            },
+            {
+              title:"course4",
+              subtitle:"course4",
+              content:"welcome to the course",
+              id:"4"
+            },
+  ];
 
-  leng2 = Object.keys(this.userBranchCourses).length;
+  leng2 = this.userBranchCourses.length;
+
+  async abc(){
+    await this.menuController.enable(false,'homeList');
+    await this.menuController.enable(true,'userList');
+  }
 
   constructor(private platform: Platform,
               private logoutService: LogoutService,
-              private menuController: MenuController
+              public menuController: MenuController
             ){
-    menuController.enable(true);
 
+      this.abc();
   }
 
   ngOnInit() {
 
-  }
-
-  openMenu(event){
-    if(event==='home'){
-      this.menuController.enable(true,'homeList');
-      this.menuController.enable(false,'userList');
-    } else {
-      this.menuController.enable(true,'userList');
-      this.menuController.enable(false,'homeList');
-    }
-    this.menuController.toggle();
   }
 }

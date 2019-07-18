@@ -1,36 +1,40 @@
 <ion-header>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-      </ion-col>
-      <ion-col size-xs = "12" size-sm = "12" size-md="12" size-lg ="7" size-xl = "7">
-        <ion-toolbar>
-          <ion-buttons slot="start" style="margin-right: 1%; margin-left:1%">
-            <a>
-              <h1>Coursera</h1>
-            </a>
-          </ion-buttons>
-          <ion-buttons slot="start">
-            <ion-searchbar placeholder=" "></ion-searchbar>
-          </ion-buttons>
-          <ion-buttons slot="end" style="margin-right: 1%">
-            <a *ngIf="this.platform.width()>540px">
-              <img style="width:40px" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1">
-            </a>
-          </ion-buttons>
-          <ion-buttons slot="end" style="margin-right: 1%">
-            <a>
-              <h6>
-                {{user.name}}
-              </h6>
-            </a>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-col>
-      <ion-col>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div *ngIf="this.platform.width()>540px">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-xs = "3" size-sm = "3" size-md="3" size-lg ="2.3" size-xl = "2.3">
+        </ion-col>
+        <ion-col size-xs = "12" size-sm = "12" size-md="12" size-lg ="6.5" size-xl = "6.5">
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-menu-button menu="userList"></ion-menu-button>
+            </ion-buttons>
+            <ion-buttons slot="start" style="margin-right:10%; margin-left: 1%">
+              <a routerLink="/index" style="text-decoration:none">
+                <h1 style="padding-bottom:10px">Coursera</h1>
+              </a>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngIf="this.platform.width()<540px">
+    <ion-toolbar>
+      <ion-buttons slot="start" style="margin-left:0">
+        <ion-menu-button menu="userList"></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="start" style="margin-left: 1%">
+        <a routerLink="/index" style="text-decoration:none">
+          <h1 style="padding-bottom:10px">Coursera</h1>
+        </a>
+      </ion-buttons>
+      <ion-buttons slot="start">
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
 </ion-header>
 
 <ion-content>
@@ -88,8 +92,10 @@
           </ion-radio-group>
 
           <h4 style="font-weight: bold">Birthday</h4>
-          <ion-datetime placeholder="Enter your Date of Birth" [formControlName]="dateofbirth" display-format="DD/MMM/YYYY" min="1919" max="2000" picker-format="DD MMM YYYY" [(ngModel)]="dateofbirth"></ion-datetime>
-
+          <ion-datetime placeholder="Enter your Date of Birth YYYY/MM/DD" [formControlName]="dateofbirth" display-format="YYYY/MM/DD" min="1919" max="2019" picker-format="YYYY MM DD" [(ngModel)]="dateofbirth"></ion-datetime>
+          <div padding>
+            <ion-button type="submit">Submit</ion-button>
+          </div>
         </form>
 
       </ion-col>
@@ -97,50 +103,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <div *ngIf="this.platform.width()>540px">
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-        </ion-col>
-        <ion-col size-xs = "3" size-sm = "3" size-md="3" size-lg ="3" size-xl = "3">
-          <a style="margin-left: 25px">About</a>
-          <br>
-          <br>
-          <br>
-          <a style="margin-left: 25px">Contact</a>
-          <br>
-        </ion-col>
-        <ion-col size-xs = "3" size-sm = "3" size-md="3" size-lg ="3" size-xl = "3">
-          <a style="display: flex; justify-content: flex-end; margin-right: 25px"><img src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg" alt="iosApp"></a>
-          <br>
-          <a style="display: flex; justify-content: flex-end; margin-right: 25px"><img src="https://prod-edxapp.edx-cdn.org/static/images/app/google_play_badge_45.6ea466e328da.png" alt="androidApp"></a>
-        </ion-col>
-        <ion-col>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-
-  <div *ngIf="this.platform.width()<540px">
-    <ion-grid>
-      <ion-row>
-        <ion-col size-xs = "4" size-sm = "4" size-md="4" size-lg ="3" size-xl = "3">
-          <a style="margin-left: 10px">About</a>
-          <br>
-          <br>
-          <a style="margin-left: 10px">Contact</a>
-          <br>
-        </ion-col>
-        <ion-col>
-        </ion-col>
-        <ion-col size-xs = "4" size-sm = "4" size-md="4" size-lg ="3" size-xl = "3">
-          <a style="margin-right: 25px"><img src="https://prod-edxapp.edx-cdn.org/static/images/app/app_store_badge_135x40.d0558d910630.svg" alt="iosApp"></a>
-          <br>
-          <a style="margin-right: 25px"><img src="https://prod-edxapp.edx-cdn.org/static/images/app/google_play_badge_45.6ea466e328da.png" alt="androidApp"></a>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-
 </ion-content>
