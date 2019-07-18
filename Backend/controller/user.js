@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 
 var express=require("express");
 var connection = require('../config/config');
-var info = require('../config/info');
 
 const user = function(req, res){
 
@@ -53,7 +52,12 @@ const userinfo = function(req, res){
       });
     } else {
       res.send({
-        results
+        name: results[0].name,
+        email: results[0].email,
+        userlevel: results[0].userlevel,
+        dateofbirth: results[0].dateofbirth,
+        gender: results[0].gender,
+        info: results[0].info
       });
     }
   }

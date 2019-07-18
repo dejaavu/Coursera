@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var info = require('./info.json');
+var info = require('../../../info.json');
 
 var conn = mysql.createConnection(info);
 conn.connect(function(err){
