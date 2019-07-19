@@ -12,11 +12,9 @@ module.exports.subscription = function(req, res) {
       });
     } else {
       if(results.length>0){
-        res.json({
-          status: true,
-          data: results,
-          message: "Subscriptions returned"
-        });
+        res.send(
+          results
+        );
       } else {
           res.json({
             status: false,
