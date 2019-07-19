@@ -1,3 +1,4 @@
+
 <ion-header>
   <div *ngIf="this.platform.width()>540px">
     <ion-grid>
@@ -50,11 +51,11 @@
         <h2>Introduction</h2>
         <p>Let the Coursera community of other learners and instructors recognize you.</p>
 
-        <form [formGroup]="form1">
+        <form [formGroup]="form1" (ngSubmit)="submit()">
 
           <h4 style="font-weight: bold"> Full name</h4>
           <ion-item>
-            <ion-input name="name" [formControlName]="name"></ion-input>
+            <ion-input name="name" formControlName="name"></ion-input>
           </ion-item>
 
           <h4 style="font-weight: bold">Profile Photo</h4>
@@ -70,11 +71,11 @@
 
           <h4 style="font-weight: bold">About Me</h4>
           <ion-item>
-            <ion-textarea placeholder="Enter more information here..." name="info" [formControlName]="info"></ion-textarea>
+            <ion-textarea placeholder="Enter more information here..." name="info" formControlName="info"></ion-textarea>
           </ion-item>
 
           <h4 style="font-weight: bold">Gender</h4>
-          <ion-radio-group [formControlName]="gender">
+          <ion-radio-group formControlName="gender">
             <ion-item>
               <ion-label>Male</ion-label>
               <ion-radio slot="start" value="male" checked></ion-radio>
@@ -92,7 +93,7 @@
           </ion-radio-group>
 
           <h4 style="font-weight: bold">Birthday</h4>
-          <ion-datetime placeholder="Enter your Date of Birth YYYY/MM/DD" [formControlName]="dateofbirth" display-format="YYYY/MM/DD" min="1919" max="2019" picker-format="YYYY MM DD" [(ngModel)]="dateofbirth"></ion-datetime>
+          <ion-datetime placeholder="Enter your Date of Birth YYYY/MM/DD" formControlName="dateofbirth" display-format="YYYY/MM/DD" min="1919" max="2019" picker-format="YYYY MM DD"></ion-datetime>
           <div padding>
             <ion-button type="submit">Submit</ion-button>
           </div>

@@ -22,15 +22,18 @@ const user = function(req, res){
         "name":req.body.name,
         "info":req.body.info,
         "gender":req.body.gender,
-        "dateofbirth":req.body.dateofbirth,
         "email":req.session.email,
     };
 
-    connection.query('INSERT INTO users SET ?',userinfo, function (error, results, fields){
+    if(req.body.dateofbirth){
+      userinfo.dateofbirth = req.body.dateofbirth
+    }
+
+    connection.query('UPDATE users SET ? WHERE email=?', [userinfo, req.session.email], function (error, results, fields){
       if (error) {
         res.json({
-            status:false,
-            message:error
+            status: false,
+            message: error
         });
       } else {
           res.json({
