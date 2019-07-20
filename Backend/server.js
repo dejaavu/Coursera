@@ -69,7 +69,8 @@ api.get('/', sessionChecker, function(req, res) {
 
   res.json({
     status: true,
-    message: "Welcome"
+    message: "Welcome",
+    userlevel: req.session.userlevel
   });
 
 });

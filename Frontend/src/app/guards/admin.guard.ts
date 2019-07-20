@@ -7,7 +7,7 @@ import { LoginService } from '../services/login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
 
   constructor(private loginService: LoginService, private router: Router) {
   }
@@ -16,10 +16,10 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Promise<boolean | UrlTree>{
 
-      if(await this.loginService.checkLogin()){
+      if(await this.loginService.checkLevel()){
         return true;
       } else {
-        this.router.navigate(['/home'],{ queryParams: { returnTo: state.url } });
+        this.router.navigate(['/home']);
         return false;
       }
 

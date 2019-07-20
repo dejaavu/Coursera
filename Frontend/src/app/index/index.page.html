@@ -46,6 +46,7 @@
   <ion-list>
     <ion-item *ngFor="let sub of subs | async | slice: 0:slice">
       <ion-card routerLink="/explore" [queryParams]="{ id: sub.id }">
+
         <ion-card-header>
           <ion-card-title>{{ sub.name }}</ion-card-title>
           <ion-card-subtitle>{{ sub.branch }}</ion-card-subtitle>

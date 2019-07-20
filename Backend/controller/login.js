@@ -17,6 +17,7 @@ module.exports.login = function(req, res){
           if(bcrypt.compareSync(req.body.password,results[0].password)){
             req.session.loggedin = true;
             req.session.email = req.body.email;
+            req.session.userlevel = results[0].userlevel;
             res.json({
               status: true,
               message: "Login Successful",

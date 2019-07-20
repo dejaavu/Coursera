@@ -19,4 +19,9 @@ export class LoginService {
     const object = await this.http.get("http://localhost:5000/api",{ withCredentials:true }).toPromise();
     return object["status"];
   }
+
+  async checkLevel(){
+    const object = await this.http.get("http://localhost:5000/api",{ withCredentials:true }).toPromise();
+    return object["userlevel"] == 'admin';
+  }
 }
