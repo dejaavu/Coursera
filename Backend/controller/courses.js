@@ -53,11 +53,9 @@ module.exports.courseinfo = function(req, res){
           message:error
       });
     } else if(results.length>0) {
-      res.json({
-        status: true,
-        data: results,
-        message: "Course retrieved"
-      });
+      res.send(
+        results
+      );
     } else {
       res.json({
           status:false,

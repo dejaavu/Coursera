@@ -4,7 +4,8 @@ var express=require("express");
 var connection = require('../config/config');
 
 module.exports.subscription = function(req, res) {
-  connection.query('SELECT * FROM usersubscriptions WHERE email=?', req.session.email, function(error, results, fields) {
+  var sql = "SELECT A.`id` ,A.`info` ,A.`name` , A.`branch` , A.`uploader` ,B.`email` FROM `courses`AS A INNER JOIN `usersubscriptions` AS B ON B.`id` = A.`id` WHERE B.`email`=?"
+  connection.query(sql, req.session.email, function(error, results, fields) {
     if(error){
       res.json({
         status: false,
@@ -18,7 +19,7 @@ module.exports.subscription = function(req, res) {
       } else {
           res.json({
             status: false,
-            message: "No email found"
+            message: "No subscriptions found"
           });
       }
     }

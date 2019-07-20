@@ -4,6 +4,7 @@ import { LogoutService } from '../services/logout.service';
 
 import { MenuController } from '@ionic/angular';
 import { SubscriptionService } from '../services/subscription.service';
+import { ExploreService } from '../services/explore.service';
 
 import { ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
@@ -22,7 +23,7 @@ export class IndexPage implements OnInit {
   }
 
   subs;
-  slice=3;
+  slice=5;
 
   async subscriptions(){
     return await this.subscriptionService.getsubs().toPromise();
@@ -31,7 +32,8 @@ export class IndexPage implements OnInit {
   constructor(private platform: Platform,
               private logoutService: LogoutService,
               public menuController: MenuController,
-              private subscriptionService: SubscriptionService
+              private subscriptionService: SubscriptionService,
+              private exploreService: ExploreService
             ){
 
       this.menuControllerSwitch();
@@ -42,12 +44,6 @@ export class IndexPage implements OnInit {
     setTimeout(() => {
       this.slice += 1;
       event.target.complete();
-
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
-      if (false) {
-        event.target.disabled = true;
-      }
     }, 500);
   }
 

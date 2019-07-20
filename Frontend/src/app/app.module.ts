@@ -12,6 +12,10 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { RegModalPageModule } from './reg-page-modal/reg-page-modal.module';
 import { LoginModalPageModule } from './login-modal/login-modal.module';
+import { GetcoursePipe } from './getcourse.pipe';
+import { PipesModule } from './getcourse.pipe.module';
+
+import { ExploreService } from './services/explore.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,12 +26,15 @@ import { LoginModalPageModule } from './login-modal/login-modal.module';
     AppRoutingModule,
     RegModalPageModule,
     LoginModalPageModule,
-    HttpClientModule
+    HttpClientModule,
+    PipesModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    ExploreService,
+    GetcoursePipe
   ],
   bootstrap: [AppComponent]
 })

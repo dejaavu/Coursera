@@ -12,7 +12,7 @@ export class ExploreService {
   constructor(private http: HttpClient) { }
 
   getcourse(id){
-    return this.http.get('http://localhost:5000/api/courses/'+id, { withCredentials: true });
+    return this.http.get('http://localhost:5000/api/courses/'.concat(id), { withCredentials: true });
   }
 
 }

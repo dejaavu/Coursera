@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { GetcoursePipe } from '../getcourse.pipe';
+import { PipesModule } from '../getcourse.pipe.module';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -22,8 +24,10 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    PipesModule
   ],
-  declarations: [UserPage]
+  declarations: [UserPage],
+  providers: [GetcoursePipe]
 })
 export class UserPageModule {}

@@ -54,14 +54,9 @@ const userinfo = function(req, res){
           message:error
       });
     } else {
-      res.send({
-        name: results[0].name,
-        email: results[0].email,
-        userlevel: results[0].userlevel,
-        dateofbirth: results[0].dateofbirth,
-        gender: results[0].gender,
-        info: results[0].info
-      });
+      res.send(
+        results[0]
+      );
     }
   }
   );

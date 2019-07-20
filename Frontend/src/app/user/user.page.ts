@@ -11,12 +11,7 @@ import { UserService } from '../services/user.service';
 })
 export class UserPage implements OnInit {
 
-  user = {
-    name: 'USER',
-    email: 'user@user.com',
-    branch: 'BranchTemp',
-  };
-
+  user;
   public form1: FormGroup;
 
   constructor(public formBuilder: FormBuilder,
@@ -31,7 +26,7 @@ export class UserPage implements OnInit {
           gender: [''],
           dateofbirth: [''],
 	    });
-
+    this.user = this.getuser();
   }
 
   ngOnInit() {
@@ -51,6 +46,10 @@ export class UserPage implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  async getuser(){
+    return await this.userService.getinfo().toPromise();
   }
 
   async presentToast(msg: string) {
