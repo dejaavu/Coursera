@@ -20,7 +20,6 @@ module.exports.addcourses = function(req, res){
   if(validate(req.body)){
 
     var courseinfo = {
-        "id":req.params.id,
         "name":req.body.name,
         "branch":req.body.branch,
         "uploader":req.session.email,
@@ -44,7 +43,7 @@ module.exports.addcourses = function(req, res){
   }
 }
 
-module.exports.courseinfo = function(req, res){
+module.exports.getcoursesbyid = function(req, res){
 
   connection.query('SELECT * FROM courses WHERE id=?', req.params.id, function (error, results, fields){
     if (error) {
@@ -103,16 +102,11 @@ module.exports.deletecourse = function(req, res) {
         status: false,
         message: error
       });
-    } else if(results.length>0) {
+    } else {
         res.json({
           status: true,
           message: "Course deleted"
         });
-    } else {
-      res.json({
-          status:false,
-          message:"Course not found"
-      });
     }
   });
 }
@@ -126,18 +120,22 @@ module.exports.getcourses = function(req, res){
           message: error
         });
       } else {
-        if(results.length>0){
-          res.json({
-            status: true,
-            data: results,
-            message: "Courses retrieved"
-          });
-        } else {
-          res.json({
-            status: false,
-            message: "No courses found"
-          });
-        }
+          res.send(
+            results
+          );
+      }
+    });
+  } else {
+    connection.query('SELECT * FROM courses where uploader=?', req.session.email, function(error, results, fields){
+      if(error){
+        res.json({
+          status: false,
+          message: error
+        });
+      } else {
+          res.send(
+            results
+          );
       }
     });
   }

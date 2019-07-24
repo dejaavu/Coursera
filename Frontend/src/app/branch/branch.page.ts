@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 
+import { ViewChild } from '@angular/core';
+import { IonInfiniteScroll } from '@ionic/angular';
+
+import { BranchService } from '../services/branch.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-branch',
   templateUrl: './branch.page.html',
@@ -8,15 +14,29 @@ import { Platform } from '@ionic/angular';
 })
 export class BranchPage implements OnInit {
 
-  user = {
-    name: 'USER',
-    email: 'user@user.com',
-    branch: 'BranchTemp',
-  };
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  constructor(private platform: Platform) { }
+  courses;
+  private slice = 5;
+
+  constructor(private platform: Platform,
+              private branchService: BranchService,
+              private router: Router) {
+      this.courses = this.getcourses()
+  }
 
   ngOnInit() {
+  }
+
+  async getcourses(){
+    return await this.branchService.getcourses(this.router.url.slice(8)).toPromise();
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      this.slice += 2;
+      event.target.complete();
+    }, 500);
   }
 
 }

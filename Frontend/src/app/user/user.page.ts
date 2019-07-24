@@ -21,8 +21,6 @@ export class UserPage implements OnInit {
     this.form1 = formBuilder.group({
 	        name: [''],
 	        info: [''],
-	        location: [''],
-          skills: [''],
           gender: [''],
           dateofbirth: [''],
 	    });

@@ -20,7 +20,9 @@ const routes: Routes = [
   { path: 'branch/:branch', loadChildren: './branch/branch.module#BranchPageModule',
     canActivate: [AuthGuard]},
   { path: 'admin', loadChildren: './admin/admin.module#AdminPageModule',
-    canActivate: [AuthGuard, AdminGuard]}
+    canActivate: [AuthGuard, AdminGuard]},
+  { path: 'course/:id', loadChildren: './course/course.module#CoursePageModule',
+    canActivate: [AuthGuard]}
 ];
 
 @NgModule({

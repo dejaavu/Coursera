@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 
 import { Platform } from '@ionic/angular';
@@ -9,9 +9,10 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { RegModalPage } from './reg-page-modal/reg-page-modal.page';
 import { LoginModalPage } from './login-modal/login-modal.page';
 
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, Route } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { LogoutService } from './services/logout.service';
-
+import { UserService } from './services/user.service';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -19,24 +20,24 @@ import { LogoutService } from './services/logout.service';
 })
 export class AppComponent {
 
-  user = {
-    name: 'USER',
-    email: 'user@user.com',
-    branch: 'BranchTemp',
-  };
+  user;
+  userlevel;
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private nav: NavController,
     private modalSignUpController: ModalController,
     private modalLoginController: ModalController,
     private menuController: MenuController,
     private router: Router,
-    private logoutService: LogoutService
+    private logoutService: LogoutService,
+    private loginService: LoginService,
+    private userService: UserService
   ) {
     this.initializeApp();
+    this.userlevel = this.loginService.checkLevel();
+    this.user = this.userService.getinfo();
   }
 
   initializeApp() {

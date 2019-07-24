@@ -88,9 +88,10 @@ api.get('/user',sessionChecker, userController.userinfo);
 api.get('/subscription', sessionChecker, subscriptionController.subscription);
 api.post('/subscription/:id', sessionChecker, subscriptionController.addsub);
 api.delete('/subscription/:id', sessionChecker, subscriptionController.removesub);
+api.get('/subscription/:id', sessionChecker, subscriptionController.getsubbyid);
 //route to handle explore courses
-api.post('/courses/:id', sessionChecker, upload.none(), coursesController.addcourses);
-api.get('/courses/:id', sessionChecker, coursesController.courseinfo);
+api.post('/courses', sessionChecker, upload.none(), coursesController.addcourses);
+api.get('/courses/:id', sessionChecker, coursesController.getcoursesbyid);
 api.put('/courses/:id', sessionChecker, upload.none(), coursesController.updatecourse);
 api.delete('/courses/:id', sessionChecker, coursesController.deletecourse);
 api.get('/courses', sessionChecker, coursesController.getcourses);

@@ -2,16 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+
+import { GetcoursePipe } from '../getcourse.pipe';
+import { PipesModule } from '../getcourse.pipe.module';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AdminPage } from './admin.page';
+import { CoursePage } from './course.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminPage
+    component: CoursePage
   }
 ];
 
@@ -21,8 +23,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule
+    PipesModule
   ],
-  declarations: [AdminPage]
+  declarations: [CoursePage],
+  providers: [GetcoursePipe]
 })
-export class AdminPageModule {}
+export class CoursePageModule {}

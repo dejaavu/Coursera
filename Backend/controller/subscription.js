@@ -12,16 +12,25 @@ module.exports.subscription = function(req, res) {
         message: error
       });
     } else {
-      if(results.length>0){
         res.send(
           results
         );
-      } else {
-          res.json({
-            status: false,
-            message: "No subscriptions found"
-          });
-      }
+    }
+  });
+}
+
+module.exports.getsubbyid = function(req, res) {
+  var stmt = `SELECT * FROM usersubscriptions WHERE email=? AND id=?`
+  connection.query(stmt, [req.session.email, req.params.id], function(error, results, fields) {
+    if(error){
+      res.json({
+        status: false,
+        message: error
+      });
+    } else {
+        res.send(
+          [results.length]
+        );
     }
   });
 }

@@ -15,8 +15,6 @@ import { LoginModalPageModule } from './login-modal/login-modal.module';
 import { GetcoursePipe } from './getcourse.pipe';
 import { PipesModule } from './getcourse.pipe.module';
 
-import { ExploreService } from './services/explore.service';
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -33,7 +31,6 @@ import { ExploreService } from './services/explore.service';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    ExploreService,
     GetcoursePipe
   ],
   bootstrap: [AppComponent]
