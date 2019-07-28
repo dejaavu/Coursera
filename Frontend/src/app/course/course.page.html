@@ -95,6 +95,7 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+
 <ion-footer>
   <ion-grid>
     <ion-row>
@@ -116,7 +117,7 @@
           </div>
         </ion-button>
         <div class="divider"></div>
-        <ion-button style="height: 50px" color="light">
+        <ion-button style="height: 50px" color="light" [routerLink]="'/faq/'+this.router.url.slice(8)">
           <div>
             <ion-icon name="clipboard" style="font-size:200%"></ion-icon>
             <br>

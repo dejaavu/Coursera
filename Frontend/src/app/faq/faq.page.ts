@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-faq',
@@ -7,7 +9,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FaqPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,private platform: Platform) {
+    for(var i = 0; i < this.faq.length; i++) {
+    this.set.push(0);
+    }
+  }
+
+  private faq = [
+    {
+      question: "When will I have access to the lectures and assignments?",
+      answer: "Once you enroll for a Certificate, you’ll have access to all videos, quizzes, and programming assignments (if applicable). Peer review assignments can only be submitted and reviewed once your session has begun. If you choose to explore the course without purchasing, you may not be able to access certain assignments."
+    },
+    {
+      question: "When will I have access to the lectures and assignments?",
+      answer: "Once you enroll for a Certificate, you’ll have access to all videos, quizzes, and programming assignments (if applicable). Peer review assignments can only be submitted and reviewed once your session has begun. If you choose to explore the course without purchasing, you may not be able to access certain assignments."
+    },
+    {
+      question: "When will I have access to the lectures and assignments?",
+      answer: "Once you enroll for a Certificate, you’ll have access to all videos, quizzes, and programming assignments (if applicable). Peer review assignments can only be submitted and reviewed once your session has begun. If you choose to explore the course without purchasing, you may not be able to access certain assignments."
+    },
+    {
+      question: "When will I have access to the lectures and assignments?",
+      answer: "Once you enroll for a Certificate, you’ll have access to all videos, quizzes, and programming assignments (if applicable). Peer review assignments can only be submitted and reviewed once your session has begun. If you choose to explore the course without purchasing, you may not be able to access certain assignments."
+    },
+    {
+      question: "When will I have access to the lectures and assignments?",
+      answer: "Once you enroll for a Certificate, you’ll have access to all videos, quizzes, and programming assignments (if applicable). Peer review assignments can only be submitted and reviewed once your session has begun. If you choose to explore the course without purchasing, you may not be able to access certain assignments."
+    },
+    {
+      question: "When will I have access to the lectures and assignments?",
+      answer: "Once you enroll for a Certificate, you’ll have access to all videos, quizzes, and programming assignments (if applicable). Peer review assignments can only be submitted and reviewed once your session has begun. If you choose to explore the course without purchasing, you may not be able to access certain assignments."
+    }
+  ];
+  private set = [0];
+  private label = "arrow-forward";
+
+  switchset(i){
+      this.set[i] += 1;
+      if(this.set[i]%2==0){
+        this.label = "arrow-forward";
+      } else {
+        this.label = "arrow-down";
+      }
+  }
 
   ngOnInit() {
   }

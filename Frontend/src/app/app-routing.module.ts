@@ -23,9 +23,9 @@ const routes: Routes = [
     canActivate: [AuthGuard, AdminGuard]},
   { path: 'course/:id', loadChildren: './course/course.module#CoursePageModule',
     canActivate: [AuthGuard]},
-  { path: 'faq', loadChildren: './faq/faq.module#FaqPageModule',
+  { path: 'faq/:id', loadChildren: './faq/faq.module#FaqPageModule',
     canActivate: [AuthGuard]},
-  { path: 'syllabus', loadChildren: './syllabus/syllabus.module#SyllabusPageModule',
+  { path: 'syllabus/:id', loadChildren: './syllabus/syllabus.module#SyllabusPageModule',
     canActivate: [AuthGuard]},
   { path: 'superadmin', loadChildren: './superadmin/superadmin.module#SuperadminPageModule' }
 ];
