@@ -24,7 +24,6 @@ export class UserPage implements OnInit {
           gender: [''],
           dateofbirth: [''],
 	    });
-    this.user = this.getuser();
   }
 
   ngOnInit() {
@@ -56,6 +55,10 @@ export class UserPage implements OnInit {
       duration: 2000,
     });
     toast.present();
+  }
+
+  ionViewWillEnter(){
+    this.user = this.getuser();
   }
 
 }

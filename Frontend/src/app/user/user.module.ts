@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { GetcoursePipe } from '../getcourse.pipe';
-import { PipesModule } from '../getcourse.pipe.module';
+import { GetvaluePipe } from '../getvalue.pipe';
+import { PipesModule } from '../getvalue.pipe.module';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -28,6 +28,6 @@ const routes: Routes = [
     PipesModule
   ],
   declarations: [UserPage],
-  providers: [GetcoursePipe]
+  providers: [GetvaluePipe]
 })
 export class UserPageModule {}

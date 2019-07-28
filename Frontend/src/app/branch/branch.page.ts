@@ -22,7 +22,6 @@ export class BranchPage implements OnInit {
   constructor(private platform: Platform,
               private branchService: BranchService,
               private router: Router) {
-      this.courses = this.getcourses()
   }
 
   ngOnInit() {
@@ -37,6 +36,10 @@ export class BranchPage implements OnInit {
       this.slice += 2;
       event.target.complete();
     }, 500);
+  }
+
+  ionViewWillEnter(){
+    this.courses = this.getcourses();
   }
 
 }

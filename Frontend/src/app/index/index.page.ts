@@ -22,10 +22,11 @@ export class IndexPage implements OnInit {
     await this.menuController.enable(true,'userList');
   }
 
-  subs;
+  private subs;
   private slice = 5;
 
   async subscriptions(){
+    console.log(1);
     return await this.subscriptionService.getsubs().toPromise();
   }
 
@@ -34,9 +35,6 @@ export class IndexPage implements OnInit {
               public menuController: MenuController,
               private subscriptionService: SubscriptionService
             ){
-
-      this.menuControllerSwitch();
-      this.subs = this.subscriptions();
   }
 
   loadData(event) {
@@ -48,6 +46,11 @@ export class IndexPage implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  ionViewWillEnter(){
+    this.menuControllerSwitch();
+    this.subs = this.subscriptions();
   }
 
 

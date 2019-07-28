@@ -68,6 +68,11 @@
             <a routerLink="/admin" style="text-decoration:none" style="text-decoration:none;color:inherit"><ion-label>ADMIN</ion-label></a>
           </ion-buttons>
         </ion-item>
+        <ion-item *ngIf="this.superadmin | async">
+          <ion-buttons (click)="menuController.close()">
+            <a routerLink="/superadmin" style="text-decoration:none" style="text-decoration:none;color:inherit"><ion-label>SUPERADMIN</ion-label></a>
+          </ion-buttons>
+        </ion-item>
       </ion-list>
     </ion-content>
 

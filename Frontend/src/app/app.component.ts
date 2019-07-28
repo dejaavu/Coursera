@@ -22,6 +22,7 @@ export class AppComponent {
 
   user;
   userlevel;
+  superadmin;
 
   constructor(
     private platform: Platform,
@@ -38,6 +39,7 @@ export class AppComponent {
     this.initializeApp();
     this.userlevel = this.loginService.checkLevel();
     this.user = this.userService.getinfo();
+    this.superadmin = this.loginService.checkSuperAdmin();
   }
 
   initializeApp() {

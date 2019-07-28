@@ -1,10 +1,10 @@
 import { NgModule } from "@angular/core";
 import { IonicModule } from "ionic-angular";
-import { GetcoursePipe } from "./getcourse.pipe";
+import { GetvaluePipe } from "./getvalue.pipe";
 
 @NgModule({
-  declarations: [GetcoursePipe],
+  declarations: [GetvaluePipe],
   imports: [IonicModule],
-  exports: [GetcoursePipe]
+  exports: [GetvaluePipe]
 })
 export class PipesModule {}

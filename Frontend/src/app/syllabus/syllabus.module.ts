@@ -3,17 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { GetvaluePipe } from '../getvalue.pipe';
-import { PipesModule } from '../getvalue.pipe.module';
-
 import { IonicModule } from '@ionic/angular';
 
-import { CoursePage } from './course.page';
+import { SyllabusPage } from './syllabus.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: CoursePage
+    component: SyllabusPage
   }
 ];
 
@@ -22,10 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    PipesModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [CoursePage],
-  providers: [GetvaluePipe]
+  declarations: [SyllabusPage]
 })
-export class CoursePageModule {}
+export class SyllabusPageModule {}

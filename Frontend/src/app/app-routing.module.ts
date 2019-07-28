@@ -22,7 +22,12 @@ const routes: Routes = [
   { path: 'admin', loadChildren: './admin/admin.module#AdminPageModule',
     canActivate: [AuthGuard, AdminGuard]},
   { path: 'course/:id', loadChildren: './course/course.module#CoursePageModule',
-    canActivate: [AuthGuard]}
+    canActivate: [AuthGuard]},
+  { path: 'faq', loadChildren: './faq/faq.module#FaqPageModule',
+    canActivate: [AuthGuard]},
+  { path: 'syllabus', loadChildren: './syllabus/syllabus.module#SyllabusPageModule',
+    canActivate: [AuthGuard]},
+  { path: 'superadmin', loadChildren: './superadmin/superadmin.module#SuperadminPageModule' }
 ];
 
 @NgModule({

@@ -11,12 +11,12 @@ var logoutController = require('./controller/logout');
 var userController = require('./controller/user');
 var coursesController = require('./controller/courses');
 var subscriptionController = require('./controller/subscription');
+var approvalController = require('./controller/approvals');
 
 var conn = require('./config/config');
 
 var app = express();
 var upload = multer();
-
 //middleware to check login
 var sessionChecker = (req, res, next) => {
     if (req.session.cookie && req.session.loggedin) {
@@ -24,7 +24,7 @@ var sessionChecker = (req, res, next) => {
     } else {
         res.json({
 					status: false,
-					message: "User not logged in"
+					message: "User not logged in",
 				});
     }
 };
@@ -84,9 +84,10 @@ api.get('/logout', logoutController.logout);
 //route to handle user data
 api.put('/user', sessionChecker, upload.none(), userController.user);
 api.get('/user',sessionChecker, userController.userinfo);
+api.get('/user/:email',sessionChecker, userController.userinfobyemail);
 //route to handle subscriptions
 api.get('/subscription', sessionChecker, subscriptionController.subscription);
-api.post('/subscription/:id', sessionChecker, subscriptionController.addsub);
+api.put('/subscription/:id', sessionChecker, subscriptionController.addsub);
 api.delete('/subscription/:id', sessionChecker, subscriptionController.removesub);
 api.get('/subscription/:id', sessionChecker, subscriptionController.getsubbyid);
 //route to handle explore courses
@@ -95,6 +96,10 @@ api.get('/courses/:id', sessionChecker, coursesController.getcoursesbyid);
 api.put('/courses/:id', sessionChecker, upload.none(), coursesController.updatecourse);
 api.delete('/courses/:id', sessionChecker, coursesController.deletecourse);
 api.get('/courses', sessionChecker, coursesController.getcourses);
+//route to handle admin requests
+api.post('/approvals', sessionChecker, approvalController.addcourse);
+api.delete('/approvals/:id',sessionChecker, approvalController.deletecourse);
+api.get('/approvals',sessionChecker, approvalController.getapproval);
 
 app.use('/api', api);
 app.listen(5000);

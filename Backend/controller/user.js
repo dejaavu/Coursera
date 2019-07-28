@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 var express=require("express");
 var connection = require('../config/config');
@@ -60,9 +60,27 @@ const userinfo = function(req, res){
     }
   }
   );
+};
+
+const userinfobyemail = function(req, res){
+  connection.query('SELECT * FROM users WHERE email=?', req.params.email, function (error, results, fields){
+    if (error) {
+      res.json({
+          status:false,
+          message:error
+      });
+    } else {
+      res.send(
+        results[0]
+      );
+    }
+  }
+  );
 }
+
 
 module.exports = {
   user,
-  userinfo
+  userinfo,
+  userinfobyemail
 }

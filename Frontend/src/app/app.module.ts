@@ -12,8 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { RegModalPageModule } from './reg-page-modal/reg-page-modal.module';
 import { LoginModalPageModule } from './login-modal/login-modal.module';
-import { GetcoursePipe } from './getcourse.pipe';
-import { PipesModule } from './getcourse.pipe.module';
+import { GetvaluePipe } from './getvalue.pipe';
+import { PipesModule } from './getvalue.pipe.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,7 +31,7 @@ import { PipesModule } from './getcourse.pipe.module';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    GetcoursePipe
+    GetvaluePipe
   ],
   bootstrap: [AppComponent]
 })

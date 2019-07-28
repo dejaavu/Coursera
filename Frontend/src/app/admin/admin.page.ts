@@ -44,7 +44,6 @@ export class AdminPage implements OnInit {
   }
 
   ngOnInit() {
-    this.courses = this.getcourses();
   }
 
   submit1() {
@@ -99,6 +98,10 @@ export class AdminPage implements OnInit {
       duration: 2000,
     });
     toast.present();
+  }
+
+  ionViewWillEnter(){
+    this.courses = this.getcourses();
   }
 
 }

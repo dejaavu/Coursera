@@ -18,4 +18,8 @@ export class UserService {
   getinfo(){
     return this.http.get('http://localhost:5000/api/user', { withCredentials: true });
   }
+
+  getinfobyemail(email){
+    return this.http.get('http://localhost:5000/api/user/' + email, { withCredentials: true });
+  }
 }

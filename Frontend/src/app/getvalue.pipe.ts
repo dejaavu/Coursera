@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'getvalue'
 })
-export class GetcoursePipe implements PipeTransform {
+export class GetvaluePipe implements PipeTransform {
 
   constructor() {
 
