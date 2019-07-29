@@ -1,9 +1,103 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>syllabus</ion-title>
-  </ion-toolbar>
+  <div *ngIf="this.platform.width()>540px">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col size-xs = "12" size-sm = "12" size-md="12" size-lg ="6.5" size-xl = "6.5">
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-menu-button menu="userList"></ion-menu-button>
+            </ion-buttons>
+            <ion-buttons slot="start" style="margin-right:10%; margin-left: 1%">
+              <a routerLink="/index" style="text-decoration:none">
+                <h1 style="padding-bottom:10px">Coursera</h1>
+              </a>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngIf="this.platform.width()<540px">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button menu="userList"></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="start" style="margin-right:2%">
+        <a routerLink="/index" style="text-decoration:none">
+          <h1 style="padding-bottom:10px">Coursera</h1>
+        </a>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
 </ion-header>
 
-<ion-content>
 
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+        <ion-col size-xs = "12" size-sm = "12" size-md="12" size-lg ="7" size-xl = "7">
+          <h1 style="text-align:center;font-size:200%">Syllabus</h1>
+          <div class="line"></div>
+          <div *ngFor="let module of syllabus" >
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title style="font-size:170%">{{ module.name }}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+              <div *ngFor="let section of module.section">
+                <ion-list>
+                  <ion-item>
+                    <ion-icon name="arrow-dropright-circle" style="margin-right:2%"></ion-icon>
+                    <a href="#" class="anchor"> <ion-label>{{ section.name }}</ion-label> </a> 
+                  </ion-item>
+                </ion-list>
+              </div>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+        <ion-button style="height: 50px" color="light" [routerLink]="'/course/'+this.router.url.slice(10)">
+          <div>
+            <ion-icon name="information-circle" style="font-size:200%"></ion-icon>
+            <br>
+            <ion-label>About</ion-label>
+          </div>
+        </ion-button>
+        <div class="divider"></div>
+        <ion-button style="height: 50px" color="light">
+          <div>
+            <ion-icon name="book" style="font-size:200%"></ion-icon>
+            <br>
+            <ion-label>Syllabus</ion-label>
+          </div>
+        </ion-button>
+        <div class="divider"></div>
+        <ion-button style="height: 50px" color="light" [routerLink]="'/faq/'+this.router.url.slice(10)">
+          <div>
+            <ion-icon name="clipboard" style="font-size:200%"></ion-icon>
+            <br>
+            <ion-label>FAQ</ion-label>
+          </div>
+        </ion-button>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

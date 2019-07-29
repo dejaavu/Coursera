@@ -12,6 +12,7 @@ export class FaqPage implements OnInit {
   constructor(private router: Router,private platform: Platform) {
     for(var i = 0; i < this.faq.length; i++) {
     this.set.push(0);
+    this.label.push("arrow-forward");
     }
   }
 
@@ -41,15 +42,15 @@ export class FaqPage implements OnInit {
       answer: "Once you enroll for a Certificate, you’ll have access to all videos, quizzes, and programming assignments (if applicable). Peer review assignments can only be submitted and reviewed once your session has begun. If you choose to explore the course without purchasing, you may not be able to access certain assignments."
     }
   ];
-  private set = [0];
-  private label = "arrow-forward";
+  private set = [];
+  private label = [];
 
   switchset(i){
       this.set[i] += 1;
       if(this.set[i]%2==0){
-        this.label = "arrow-forward";
+        this.label[i] = "arrow-forward";
       } else {
-        this.label = "arrow-down";
+        this.label[i] = "arrow-down";
       }
   }
 

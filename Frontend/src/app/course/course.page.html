@@ -109,7 +109,7 @@
           </div>
         </ion-button>
         <div class="divider"></div>
-        <ion-button style="height: 50px" color="light">
+        <ion-button style="height: 50px" color="light"[routerLink]="'/syllabus/'+this.router.url.slice(8)">
           <div>
             <ion-icon name="book" style="font-size:200%"></ion-icon>
             <br>
