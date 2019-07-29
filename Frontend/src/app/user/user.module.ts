@@ -8,7 +8,6 @@ import { GetvaluePipe } from '../getvalue.pipe';
 import { PipesModule } from '../getvalue.pipe.module';
 
 import { IonicModule } from '@ionic/angular';
-
 import { UserPage } from './user.page';
 
 const routes: Routes = [
@@ -28,6 +27,8 @@ const routes: Routes = [
     PipesModule
   ],
   declarations: [UserPage],
-  providers: [GetvaluePipe]
+  providers: [
+      GetvaluePipe,
+      ]
 })
 export class UserPageModule {}

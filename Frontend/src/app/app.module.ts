@@ -31,8 +31,8 @@ import { PipesModule } from './getvalue.pipe.module';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    GetvaluePipe
-  ],
+    GetvaluePipe,
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

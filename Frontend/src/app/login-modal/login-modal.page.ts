@@ -63,6 +63,7 @@ export class LoginModalPage implements OnInit {
           this.presentToast(`Login Successful`);
           this.modalLoginController.dismiss();
           this.router.navigate(['/index']);
+          location.reload();
         } else {
           this.presentToast(`Login Unsuccessful : ${ res["message"] }`);
         }

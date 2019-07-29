@@ -39,7 +39,7 @@
             <ion-buttons (click)="menuController.close()">
               <a routerLink="/user" style="text-decoration:none">
                 <h6>
-                  {{this.user | async | getvalue: 'name'}}
+                  {{this.user.name}}
                 </h6>
               </a>
             </ion-buttons>
@@ -63,12 +63,12 @@
             <a routerLink="/explore" style="text-decoration:none" style="text-decoration:none;color:inherit"><ion-label>EXPLORE</ion-label></a>
           </ion-buttons>
         </ion-item>
-        <ion-item *ngIf="this.userlevel | async">
+        <ion-item *ngIf="this.userlevel">
           <ion-buttons (click)="menuController.close()">
             <a routerLink="/admin" style="text-decoration:none" style="text-decoration:none;color:inherit"><ion-label>ADMIN</ion-label></a>
           </ion-buttons>
         </ion-item>
-        <ion-item *ngIf="this.superadmin | async">
+        <ion-item *ngIf="this.superadmin">
           <ion-buttons (click)="menuController.close()">
             <a routerLink="/superadmin" style="text-decoration:none" style="text-decoration:none;color:inherit"><ion-label>SUPERADMIN</ion-label></a>
           </ion-buttons>

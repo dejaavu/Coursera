@@ -108,7 +108,6 @@ async presentToast(msg: string) {
     this.uploader = this.getuploader();
     this.course = this.getcourse();
     this.subscribed = this.checkSub();
-    console.log(await this.subscribed);
     if(await this.subscribed){
       this.text = "Unsubscribe";
       this.count = 1;

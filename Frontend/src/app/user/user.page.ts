@@ -11,13 +11,14 @@ import { UserService } from '../services/user.service';
 })
 export class UserPage implements OnInit {
 
-  user;
+  private user;
   public form1: FormGroup;
 
   constructor(public formBuilder: FormBuilder,
               private platform: Platform,
               private toastController: ToastController,
-              private userService: UserService) {
+              private userService: UserService,
+              ) {
     this.form1 = formBuilder.group({
 	        name: [''],
 	        info: [''],
@@ -46,7 +47,8 @@ export class UserPage implements OnInit {
   }
 
   async getuser(){
-    return await this.userService.getinfo().toPromise();
+    var info = await this.userService.getinfo();
+    return info;
   }
 
   async presentToast(msg: string) {

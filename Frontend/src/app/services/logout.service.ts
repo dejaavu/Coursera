@@ -15,7 +15,6 @@ export class LogoutService {
     this.http.get("http://localhost:5000/api/logout",{ withCredentials: true }).toPromise().then(
       x =>{
         this.router.navigate(['/home']);
-        location.reload();
       });
   }
 }

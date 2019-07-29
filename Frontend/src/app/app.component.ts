@@ -20,9 +20,9 @@ import { LoginService } from './services/login.service';
 })
 export class AppComponent {
 
-  user;
-  userlevel;
-  superadmin;
+  private user;
+  private userlevel;
+  private superadmin;
 
   constructor(
     private platform: Platform,
@@ -37,9 +37,18 @@ export class AppComponent {
     private userService: UserService
   ) {
     this.initializeApp();
-    this.userlevel = this.loginService.checkLevel();
-    this.user = this.userService.getinfo();
-    this.superadmin = this.loginService.checkSuperAdmin();
+    this.userService.load();
+    this.loginService.load1();
+    this.loginService.load2();
+    this.userService.userinfo.subscribe((info) => {
+      this.user = info;
+    });
+    this.loginService.isadmin.subscribe((info) => {
+      this.userlevel = info;
+    });
+    this.loginService.isSUadmin.subscribe((info) => {
+      this.superadmin = info;
+    });
   }
 
   initializeApp() {
