@@ -47,7 +47,7 @@
         <div *ngFor="let question of faq; index as i" style="text-align:left">
           <a (click)="switchset(i)">
           <ion-card>
-            <ion-icon *ngIf="this.platform.width()>1317px" [name]="label" style="font-size:170%; display: inline-block; margin-right: 8px; margin-top:5px"></ion-icon>
+            <ion-icon *ngIf="this.platform.width()>1317px" [name]="label[i]" style="font-size:170%; display: inline-block; margin-right: 8px; margin-top:5px"></ion-icon>
             <ion-card-title style="font-size:170%; display: inline-block; margin-bottom:5px; margin-top:5px; margin-left: 2px">{{ question.question }}</ion-card-title>
             <ion-card-subtitle *ngIf="this.platform.width()>1317px" style="margin-top: 7px; margin-left: 30px; margin-bottom:5px; font-size: 120%" [hidden]="set[i]%2==0">{{ question.answer }}</ion-card-subtitle>
             <ion-card-subtitle *ngIf="this.platform.width()<1317px" style="margin-top: 7px; margin-left: 3px; margin-right: 3px; margin-bottom:5px; font-size: 120%" [hidden]="set[i]%2==0">{{ question.answer }}</ion-card-subtitle>
@@ -75,7 +75,7 @@
           </div>
         </ion-button>
         <div class="divider"></div>
-        <ion-button style="height: 50px" color="light">
+        <ion-button style="height: 50px" color="light" [routerLink]="'/syllabus/'+this.router.url.slice(5)">
           <div>
             <ion-icon name="book" style="font-size:200%"></ion-icon>
             <br>
