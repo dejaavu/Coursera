@@ -9,7 +9,8 @@ import { MenuController } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor(public menuController: MenuController,private platform: Platform) {
+  constructor(public menuController: MenuController,
+              private platform: Platform) {
   }
 
   async openMenu(){

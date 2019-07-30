@@ -5,9 +5,8 @@ import { ModalController } from '../../../node_modules/@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 
+import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
-
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-modal',
@@ -17,16 +16,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class LoginModalPage implements OnInit {
 
-  emailset=0;
-  pwdset=0;
-  returnUrl;
+  private emailset=0;
+  private pwdset=0;
 
   constructor(private modalLoginController: ModalController,
               public alertController: AlertController,
               private toastController: ToastController,
               private loginService: LoginService,
-              private router: Router,
-              private route: ActivatedRoute) {
+              private router: Router
+            ) {
   }
 
   ngOnInit() {

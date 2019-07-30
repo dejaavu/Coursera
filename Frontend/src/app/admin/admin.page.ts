@@ -11,17 +11,17 @@ import { CourseService } from '../services/course.service';
 })
 export class AdminPage implements OnInit {
 
-  public courses;
-  public form1: FormGroup;
-  public form2: FormGroup;
-  public form3: FormGroup;
+  private courses;
+  private form1: FormGroup;
+  private form2: FormGroup;
+  private form3: FormGroup;
 
   async getcourses(){
     return await this.courseService.getCourseByUploader().toPromise();
   }
 
   constructor(private platform: Platform,
-              public formBuilder: FormBuilder,
+              private formBuilder: FormBuilder,
               private toastController: ToastController,
               private courseService: CourseService
               ) {

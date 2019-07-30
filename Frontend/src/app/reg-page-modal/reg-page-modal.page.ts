@@ -4,6 +4,7 @@ import { NavParams, ModalController } from '../../../node_modules/@ionic/angular
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 
+import { Router } from '@angular/router';
 import { RegService } from '../services/reg.service';
 
 @Component({
@@ -13,17 +14,19 @@ import { RegService } from '../services/reg.service';
 })
 export class RegModalPage implements OnInit {
 
-  nameset=0;
-  emailset=0;
-  pwdset=0;
-  pwdagainset=0;
-  userlevelset=0;
+  private nameset=0;
+  private emailset=0;
+  private pwdset=0;
+  private pwdagainset=0;
+  private userlevelset=0;
 
   constructor(private navParams: NavParams,
   			      private modalSignUpController: ModalController,
               public alertController: AlertController,
               private toastController: ToastController,
-              private regService: RegService) { }
+              private regService: RegService,
+              private router: Router
+            ) { }
 
   ngOnInit() {
   }

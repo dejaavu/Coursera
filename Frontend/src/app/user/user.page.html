@@ -55,7 +55,7 @@
 
           <h4 style="font-weight: bold"> Full name</h4>
           <ion-item>
-            <ion-input name="name" formControlName="name" value="{{ this.user | async | getvalue: 'name' }}"></ion-input>
+            <ion-input name="name" formControlName="name" value="{{ this.user.name }}"></ion-input>
           </ion-item>
 
           <h4 style="font-weight: bold">Profile Photo</h4>
@@ -71,11 +71,11 @@
 
           <h4 style="font-weight: bold">About Me</h4>
           <ion-item>
-            <ion-textarea placeholder="Enter more information here..." name="info" formControlName="info" value="{{ this.user | async | getvalue: 'info' }}"></ion-textarea>
+            <ion-textarea placeholder="Enter more information here..." name="info" formControlName="info" value="{{ this.user.info }}"></ion-textarea>
           </ion-item>
 
           <h4 style="font-weight: bold">Gender</h4>
-          <ion-radio-group formControlName="gender" value="{{ this.user | async | getvalue: 'gender' }}">
+          <ion-radio-group formControlName="gender" value="{{ this.user.gender }}">
             <ion-item>
               <ion-label>Male</ion-label>
               <ion-radio slot="start" value="male" checked></ion-radio>

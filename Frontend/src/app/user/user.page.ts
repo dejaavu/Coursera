@@ -60,7 +60,9 @@ export class UserPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.user = this.getuser();
+    this.userService.userinfo.subscribe((info) => {
+      this.user = info;
+    });
   }
 
 }
