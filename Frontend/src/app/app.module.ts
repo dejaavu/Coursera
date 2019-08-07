@@ -14,9 +14,10 @@ import { RegModalPageModule } from './reg-page-modal/reg-page-modal.module';
 import { LoginModalPageModule } from './login-modal/login-modal.module';
 import { GetvaluePipe } from './getvalue.pipe';
 import { PipesModule } from './getvalue.pipe.module';
+import { DefaultDirective } from './default.directive';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DefaultDirective],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -25,7 +26,7 @@ import { PipesModule } from './getvalue.pipe.module';
     RegModalPageModule,
     LoginModalPageModule,
     HttpClientModule,
-    PipesModule
+    PipesModule,
   ],
   providers: [
     StatusBar,

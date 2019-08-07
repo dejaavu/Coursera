@@ -58,11 +58,12 @@
             <ion-input name="name" formControlName="name" value="{{ this.user.name }}"></ion-input>
           </ion-item>
 
-          <h4 style="font-weight: bold">Profile Photo</h4>
-          <a>
-            <img style="width:60px; height:60px" src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1">
-          </a>
-          <p>Maximum size of 1MB. JPG, GIF, or PNG.</p>
+          <div class="line"></div>
+
+          <ion-item>
+            <h4 style="font-weight: bold"> Profile picture</h4>
+            <input type="file" name="avatar" (change)="onFileChange($event)"/>
+          </ion-item>
 
           <div class="line"></div>
 
@@ -75,10 +76,10 @@
           </ion-item>
 
           <h4 style="font-weight: bold">Gender</h4>
-          <ion-radio-group formControlName="gender" value="{{ this.user.gender }}">
+          <ion-radio-group formControlName="gender">
             <ion-item>
               <ion-label>Male</ion-label>
-              <ion-radio slot="start" value="male" checked></ion-radio>
+              <ion-radio slot="start" value="male"></ion-radio>
             </ion-item>
 
             <ion-item>
