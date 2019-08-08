@@ -64,7 +64,7 @@
               </ion-card-header>
 
               <ion-card-content>
-                {{ sub.info }}
+                {{ sub.info | slice: 0:slice1 }}
               </ion-card-content>
             </ion-card>
           </ion-item>

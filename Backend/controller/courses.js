@@ -42,8 +42,26 @@ module.exports.addcourses = function(req, res){
     });
   }
 }
+var result;
+var con;
+var resp;
 
 module.exports.getcoursesbyid = function(req, res){
+  connection.query('SELECT * FROM modules WHERE id=?', req.params.id, function (error, results, fields){
+    if (error) {
+      res.json({
+          status:false,
+          message:error
+      });
+    } else if(results.length>0) {
+        result = results;
+    } else {
+      res.json({
+          status:false,
+          message:"Module not found"
+      });
+    }
+  });
 
   connection.query('SELECT * FROM courses WHERE id=?', req.params.id, function (error, results, fields){
     if (error) {
@@ -52,8 +70,9 @@ module.exports.getcoursesbyid = function(req, res){
           message:error
       });
     } else if(results.length>0) {
+      con = result.concat(results);
       res.send(
-        results
+         con,
       );
     } else {
       res.json({
@@ -79,6 +98,7 @@ module.exports.updatecourse = function(req, res){
   if(req.body.info){
     courseinfo.info = req.body.info;
   }
+
   connection.query('UPDATE courses SET ? WHERE id=?',[courseinfo,req.params.id], function (error, results, fields){
     if (error) {
       res.json({
@@ -86,13 +106,66 @@ module.exports.updatecourse = function(req, res){
           message:error
       });
     } else {
-        res.json({
-          status:true,
-          data:results,
-          message:"Course updated"
-      });
+        resp = results;
     }
   });
+
+  if(req.body.oldname){
+    var found=0;
+    connection.query('SELECT * FROM modules WHERE modname=?',req.body.oldname, function (error, results, fields){
+      if (error) {
+        res.json({
+            status:false,
+            message:error
+        });
+      } else if(results.length>0) {
+        var moduleinfo = {
+          "modname": req.body.modname
+        };
+        connection.query('UPDATE modules SET ? WHERE modname=?',[moduleinfo,req.body.oldname], function (error, results, fields){
+          if (error) {
+            res.json({
+                status:false,
+                message:error
+            });
+          } else {
+              res.json({
+                status:true,
+                data:results,
+                data2:resp,
+                message:"Module updated"
+            });
+          }
+        });
+      } else {
+        console.log(found);
+        res.json({
+          status:false,
+          message:"Enter valid old module name"
+        });
+      }
+    });
+  } else {
+      var moduleinfo = {
+        "id": req.params.id,
+        "modname": req.body.modname
+      };
+      connection.query('INSERT INTO modules SET ?',moduleinfo, function (error, results, fields){
+        if (error) {
+          res.json({
+            status:false,
+            message:"Module already exists"
+          })
+        } else {
+            res.json({
+              status:true,
+              data:results,
+              data2:resp,
+              message:"Module added"
+          });
+        }
+      });
+  }
 }
 
 module.exports.deletecourse = function(req, res) {

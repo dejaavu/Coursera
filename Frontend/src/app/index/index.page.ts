@@ -24,6 +24,7 @@ export class IndexPage implements OnInit {
 
   private subs;
   private slice = 5;
+  private slice1 = 160;
 
   async subscriptions(){
     return await this.subscriptionService.getsubs().toPromise();

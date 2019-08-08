@@ -27,7 +27,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]},
   { path: 'syllabus/:id', loadChildren: './syllabus/syllabus.module#SyllabusPageModule',
     canActivate: [AuthGuard]},
-  { path: 'superadmin', loadChildren: './superadmin/superadmin.module#SuperadminPageModule' }
+  { path: 'superadmin', loadChildren: './superadmin/superadmin.module#SuperadminPageModule' },
+  { path: 'section', loadChildren: './section/section.module#SectionPageModule' }
 ];
 
 @NgModule({
