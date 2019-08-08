@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Platform } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
@@ -24,23 +24,30 @@ export class UserPage implements OnInit {
 	        info: [''],
           gender: [''],
           dateofbirth: [''],
+          avatar: null,
 	    });
   }
 
   ngOnInit() {
   }
 
-  submit() {
-    this.userService.submit(this.form1.value).subscribe(
+  submit(){
+    let input = new FormData();
+    input.append('name', this.form1.get('name').value);
+    input.append('info', this.form1.get('info').value);
+    input.append('gender', this.form1.get('gender').value);
+    input.append('dateofbirth', this.form1.get('dateofbirth').value);
+    input.append('avatar', this.form1.get('avatar').value);
+    this.userService.submit(input).subscribe(
       res => {
         if(res["status"]){
           this.presentToast(`User data updated successfully`);
         } else {
           this.presentToast(`User data not updated successfully`);
-          console.log(res['message']);
         }
       },
       err => {
+        this.presentToast('Error occurred. Check console for details');
         console.log(err);
       }
     );
@@ -57,6 +64,14 @@ export class UserPage implements OnInit {
       duration: 2000,
     });
     toast.present();
+  }
+
+  onFileChange(event) {
+    if(event.target.files.length > 0){
+      console.log(1);
+      var image = event.target.files[0];
+      this.form1.get('avatar').setValue(image);
+    }
   }
 
   ionViewWillEnter(){

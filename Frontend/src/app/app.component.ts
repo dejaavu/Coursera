@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 
@@ -8,21 +8,21 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { RegModalPage } from './reg-page-modal/reg-page-modal.page';
 import { LoginModalPage } from './login-modal/login-modal.page';
+import { IndexPage } from './index/index.page';
 
 import { CanActivate, Router } from '@angular/router';
 import { LogoutService } from './services/logout.service';
-import { UserService } from './services/user.service';
 import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
 
-  private user;
-  private userlevel;
-  private superadmin;
+  @ViewChild(IndexPage) child;
+
+  private email;
 
   constructor(
     private platform: Platform,
@@ -33,22 +33,14 @@ export class AppComponent {
     private menuController: MenuController,
     private router: Router,
     private logoutService: LogoutService,
-    private loginService: LoginService,
-    private userService: UserService
+    private loginService: LoginService
   ) {
     this.initializeApp();
-    this.userService.load();
-    this.loginService.load1();
-    this.loginService.load2();
-    this.userService.userinfo.subscribe((info) => {
-      this.user = info;
-    });
-    this.loginService.isadmin.subscribe((info) => {
-      this.userlevel = info;
-    });
-    this.loginService.isSUadmin.subscribe((info) => {
-      this.superadmin = info;
-    });
+  }
+
+  ngAfterViewInit(){
+    this.email = this.child.email;
+    console.log(this.child.email + "1");
   }
 
   initializeApp() {
@@ -63,6 +55,7 @@ export class AppComponent {
       component: RegModalPage,
       backdropDismiss: false,
     });
+
     modalSignUp.present();
   }
 
@@ -79,4 +72,5 @@ export class AppComponent {
     this.menuController.close();
     this.logoutService.logout();
   }
+
 }

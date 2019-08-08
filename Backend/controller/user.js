@@ -6,18 +6,22 @@ var connection = require('../config/config');
 const user = function(req, res){
 
   function validate(form){
-    if (form.name || form.info || form.gender || form.dateofbirth) {
-      return true;
+    if (form.name || form.info || form.gender || form.dateofbirth ) {
+      return 2;
     } else {
-      res.json({
-        status:false,
-        message:"Input atleast one field"
-      });
-      return false;
+        if(req.file){
+          return 1;
+        }
+        res.json({
+          status:false,
+          message:"Input atleast one field"
+        });
+        return 0;
+      }
     }
-  }
 
-  if(validate(req.body)){
+
+  if(validate(req.body) === 2){
     var userinfo = {
         "name":req.body.name,
         "info":req.body.info,
@@ -26,7 +30,7 @@ const user = function(req, res){
     };
 
     if(req.body.dateofbirth){
-      userinfo.dateofbirth = req.body.dateofbirth
+      userinfo.dateofbirth = req.body.dateofbirth;
     }
 
     connection.query('UPDATE users SET ? WHERE email=?', [userinfo, req.session.email], function (error, results, fields){
@@ -39,10 +43,16 @@ const user = function(req, res){
           res.json({
             status:true,
             data:results,
-            message:"Data updated"
+            message:"Data updated",
         });
       }
     });
+  } else {
+    if(validate(req.body) === 1){
+      res.json({
+        status: true,
+      });
+    }
   }
 };
 
@@ -82,5 +92,5 @@ const userinfobyemail = function(req, res){
 module.exports = {
   user,
   userinfo,
-  userinfobyemail
+  userinfobyemail,
 }

@@ -4,6 +4,9 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var multer  = require('multer');
 var cors = require('cors');
+var mmm = require('mmmagic');
+var Magic = mmm.Magic;
+var fs = require('fs');
 
 var regController = require('./controller/register');
 var loginController = require('./controller/login');
@@ -16,7 +19,22 @@ var approvalController = require('./controller/approvals');
 var conn = require('./config/config');
 
 var app = express();
-var upload = multer();
+
+var store = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, __dirname + '/images');
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'avatar' + '-' + req.session.email.split('.')[0] + req.session.email.split('.')[1]);
+  }
+});
+
+var ul = multer({
+  storage: store,
+
+  limits: { fileSize: 1000000 }
+}).single('avatar');
+
 //middleware to check login
 var sessionChecker = (req, res, next) => {
     if (req.session.cookie && req.session.loggedin) {
@@ -45,7 +63,6 @@ app.use(session({
   }
 }));
 
-// initialize cookie-parser to allow us access the cookies stored in the browser.
 app.use(cookieParser());
 
 app.use(session({
@@ -75,14 +92,20 @@ api.get('/', sessionChecker, function(req, res) {
 
 });
 
+//route to handle avatars
+app.get('/images/:imgname', (req, res) => {
+  var name = req.params.imgname;
+  var imagepath = __dirname + "/images/avatar-" + name;
+  res.sendFile(imagepath);
+});
 //route to handle user registration
 api.post('/register', regController.register);
 //route to handle user login
-api.post('/login', upload.none(), loginController.login);
+api.post('/login', loginController.login);
 //route to handle user logout
 api.get('/logout', logoutController.logout);
 //route to handle user data
-api.put('/user', sessionChecker, upload.none(), userController.user);
+api.put('/user', sessionChecker, ul, userController.user);
 api.get('/user',sessionChecker, userController.userinfo);
 api.get('/user/:email',sessionChecker, userController.userinfobyemail);
 //route to handle subscriptions
@@ -91,9 +114,9 @@ api.put('/subscription/:id', sessionChecker, subscriptionController.addsub);
 api.delete('/subscription/:id', sessionChecker, subscriptionController.removesub);
 api.get('/subscription/:id', sessionChecker, subscriptionController.getsubbyid);
 //route to handle explore courses
-api.post('/courses', sessionChecker, upload.none(), coursesController.addcourses);
+api.post('/courses', sessionChecker, coursesController.addcourses);
 api.get('/courses/:id', sessionChecker, coursesController.getcoursesbyid);
-api.put('/courses/:id', sessionChecker, upload.none(), coursesController.updatecourse);
+api.put('/courses/:id', sessionChecker, coursesController.updatecourse);
 api.delete('/courses/:id', sessionChecker, coursesController.deletecourse);
 api.get('/courses', sessionChecker, coursesController.getcourses);
 //route to handle admin requests

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ModalController } from '../../../node_modules/@ionic/angular';
+import { UserService } from '../services/user.service';
 
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
@@ -18,12 +19,14 @@ export class LoginModalPage implements OnInit {
 
   private emailset=0;
   private pwdset=0;
+  private form;
 
   constructor(private modalLoginController: ModalController,
               public alertController: AlertController,
               private toastController: ToastController,
               private loginService: LoginService,
-              private router: Router
+              private router: Router,
+              private userService: UserService
             ) {
   }
 
@@ -54,14 +57,15 @@ export class LoginModalPage implements OnInit {
     }
 
   onSubmit(form){
+    this.form = form;
     this.loginService.login(form)
     .subscribe(
       res => {
         if(res["status"]){
           this.presentToast(`Login Successful`);
           this.modalLoginController.dismiss();
+          this.userService.loadid(form.value.email.split('.')[0] + form.value.email.split('.')[1]);
           this.router.navigate(['/index']);
-          location.reload();
         } else {
           this.presentToast(`Login Unsuccessful : ${ res["message"] }`);
         }

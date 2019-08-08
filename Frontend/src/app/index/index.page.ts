@@ -3,6 +3,7 @@ import { Platform } from '@ionic/angular';
 import { LogoutService } from '../services/logout.service';
 
 import { MenuController } from '@ionic/angular';
+import { UserService } from '../services/user.service';
 import { SubscriptionService } from '../services/subscription.service';
 
 import { ViewChild } from '@angular/core';
@@ -24,7 +25,10 @@ export class IndexPage implements OnInit {
 
   private subs;
   private slice = 5;
+
   private slice1 = 160;
+  private email;
+
 
   async subscriptions(){
     return await this.subscriptionService.getsubs().toPromise();
@@ -32,6 +36,7 @@ export class IndexPage implements OnInit {
 
   constructor(private platform: Platform,
               private logoutService: LogoutService,
+              private userService: UserService,
               public menuController: MenuController,
               private subscriptionService: SubscriptionService
             ){
@@ -45,7 +50,11 @@ export class IndexPage implements OnInit {
   }
 
   ngOnInit() {
-
+    this.userService.userinfo.subscribe(
+      (data) => {
+        this.email = data.name;
+      }
+    );
   }
 
   ionViewWillEnter(){

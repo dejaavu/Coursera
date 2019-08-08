@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeGuard } from './guards/home.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { SuperadminGuard } from './guards/superadmin.guard';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -27,8 +28,9 @@ const routes: Routes = [
     canActivate: [AuthGuard]},
   { path: 'syllabus/:id', loadChildren: './syllabus/syllabus.module#SyllabusPageModule',
     canActivate: [AuthGuard]},
-  { path: 'superadmin', loadChildren: './superadmin/superadmin.module#SuperadminPageModule' },
-  { path: 'section', loadChildren: './section/section.module#SectionPageModule' }
+  { path: 'section', loadChildren: './section/section.module#SectionPageModule' },
+  { path: 'superadmin', loadChildren: './superadmin/superadmin.module#SuperadminPageModule',
+    canActivate: [SuperadminGuard]}
 ];
 
 @NgModule({
