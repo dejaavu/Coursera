@@ -42,7 +42,7 @@ module.exports.register = function(req, res){
       var hash = await bcrypt.hash(myPlaintextPassword, saltRounds);
 
       var users = {
-          "name":req.body.name,
+          "name":(req.body.name==='' || !req.body.name? 'USER': req.body.name),
           "email":req.body.email,
           "password":hash,
           "userlevel":req.body.userlevel,

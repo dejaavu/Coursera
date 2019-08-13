@@ -1,5 +1,5 @@
 <ion-app >
-  
+
   <ion-menu contentId="main" menuId="homeList">
 
       <ion-header>
@@ -33,13 +33,13 @@
         <ion-title style="margin-left:35%">
             <ion-buttons style="padding-top:10px"(click)="menuController.close()">
               <a routerLink="/user" style="text-decoration:none">
-                <img style="width:50px">
+                <img style="width:50px" [src] = "avatar | safeUrl">
               </a>
             </ion-buttons>
             <ion-buttons (click)="menuController.close()">
               <a routerLink="/user" style="text-decoration:none">
                 <h6>
-                  {{ this.email }}
+                  {{ this.user.name }}
                 </h6>
               </a>
             </ion-buttons>
@@ -63,14 +63,14 @@
             <a routerLink="/explore" style="text-decoration:none" style="text-decoration:none;color:inherit"><ion-label>EXPLORE</ion-label></a>
           </ion-buttons>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="this.user.userlevel !== 'student'">
           <ion-buttons (click)="menuController.close()">
-            <a routerLink="/admin" style="text-decoration:none" style="text-decoration:none;color:inherit"><ion-label>{{ this.email }}</ion-label></a>
+            <a routerLink="/admin" style="text-decoration:none" style="text-decoration:none;color:inherit"><ion-label>ADMIN</ion-label></a>
           </ion-buttons>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="this.user.userlevel == 'suadmin'">
           <ion-buttons (click)="menuController.close()">
-            <a routerLink="/superadmin" style="text-decoration:none" style="text-decoration:none;color:inherit"><ion-label>{{ this.email }}</ion-label></a>
+            <a routerLink="/superadmin" style="text-decoration:none" style="text-decoration:none;color:inherit"><ion-label>SUPERADMIN</ion-label></a>
           </ion-buttons>
         </ion-item>
       </ion-list>

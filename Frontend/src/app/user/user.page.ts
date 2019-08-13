@@ -11,7 +11,10 @@ import { UserService } from '../services/user.service';
 })
 export class UserPage implements OnInit {
 
-  private user;
+  private user = {
+    name: '',
+    info: '',
+  };
   public form1: FormGroup;
 
   constructor(public formBuilder: FormBuilder,
@@ -51,11 +54,6 @@ export class UserPage implements OnInit {
         console.log(err);
       }
     );
-  }
-
-  async getuser(){
-    var info = await this.userService.getinfo();
-    return info;
   }
 
   async presentToast(msg: string) {

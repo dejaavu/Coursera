@@ -8,21 +8,20 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { RegModalPage } from './reg-page-modal/reg-page-modal.page';
 import { LoginModalPage } from './login-modal/login-modal.page';
-import { IndexPage } from './index/index.page';
 
 import { CanActivate, Router } from '@angular/router';
 import { LogoutService } from './services/logout.service';
-import { LoginService } from './services/login.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
 
-  @ViewChild(IndexPage) child;
-
-  private email;
+  private user;
+  private avatar;
+  private avatarf;
 
   constructor(
     private platform: Platform,
@@ -33,14 +32,19 @@ export class AppComponent implements AfterViewInit {
     private menuController: MenuController,
     private router: Router,
     private logoutService: LogoutService,
-    private loginService: LoginService
+    private userService: UserService
   ) {
     this.initializeApp();
-  }
-
-  ngAfterViewInit(){
-    this.email = this.child.email;
-    console.log(this.child.email + "1");
+    this.userService.userinfo.subscribe((info) => {
+      this.user = info;
+    });
+    this.userService.avatarid.subscribe((id)=>{
+      this.userService.getavatar(id).subscribe((data)=>{
+        this.createAvatar(data);
+      }, (err)=>{
+        console.log(err);
+      });
+    });
   }
 
   initializeApp() {
@@ -73,4 +77,14 @@ export class AppComponent implements AfterViewInit {
     this.logoutService.logout();
   }
 
+  createAvatar(image) {
+   let reader = new FileReader();
+   reader.addEventListener("load", () => {
+      this.avatar = reader.result;
+   }, false);
+
+   if (image) {
+      reader.readAsDataURL(image);
+   }
+  }
 }

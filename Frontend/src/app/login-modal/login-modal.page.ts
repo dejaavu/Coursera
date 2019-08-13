@@ -64,6 +64,7 @@ export class LoginModalPage implements OnInit {
         if(res["status"]){
           this.presentToast(`Login Successful`);
           this.modalLoginController.dismiss();
+          this.userService.load();
           this.userService.loadid(form.value.email.split('.')[0] + form.value.email.split('.')[1]);
           this.router.navigate(['/index']);
         } else {

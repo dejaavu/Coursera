@@ -16,7 +16,7 @@ export class SubscriptionService {
   }
 
   addSub(id){
-    return this.http.put("http://localhost:5000/api/subscription/"+id, { withCredentials: true });
+    return this.http.post("http://localhost:5000/api/subscription/"+id, { withCredentials: true });
   }
 
   removeSub(id){

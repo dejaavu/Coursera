@@ -35,8 +35,12 @@ export class CoursePage implements OnInit {
   }
 
   async getcourse(){
-    var course = await this.courseService.getCourseById(this.router.url.slice(8)).toPromise();
-    return course[0];
+    var course: any;
+    course = await this.courseService.getCourseById(this.router.url.slice(8)).toPromise();
+    if(course.status){
+      return course.message[0];
+    }
+    return 0;
   }
 
   async getuploader(){
@@ -82,7 +86,6 @@ export class CoursePage implements OnInit {
           console.log(err);
         });
     }
-    console.log(this.count);
   }
 
 async presentToast(msg: string) {

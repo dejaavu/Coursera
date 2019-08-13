@@ -29,9 +29,15 @@ export class UserService {
   }
 
   getavatar(avatarid): Observable<Blob> {
-    return this.http.get("http://localhost:5000/images/"+avatarid, {
+    if(avatarid !== 'undefined'){
+      return this.http.get("http://localhost:5000/images/"+avatarid, {
+        withCredentials: true,
+        responseType: 'blob',
+      });
+    }
+    return this.http.get("http://localhost:5000/images/default", {
       withCredentials: true,
-      responseType: 'blob',
+      responseType: 'blob'
     });
   }
 

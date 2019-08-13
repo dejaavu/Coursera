@@ -9,15 +9,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import {MainPipe} from './safe-url.pipe.module';
 
 import { RegModalPageModule } from './reg-page-modal/reg-page-modal.module';
 import { LoginModalPageModule } from './login-modal/login-modal.module';
 import { GetvaluePipe } from './getvalue.pipe';
 import { PipesModule } from './getvalue.pipe.module';
-import { DefaultDirective } from './default.directive';
 
 @NgModule({
-  declarations: [AppComponent, DefaultDirective],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -27,6 +27,7 @@ import { DefaultDirective } from './default.directive';
     LoginModalPageModule,
     HttpClientModule,
     PipesModule,
+    MainPipe
   ],
   providers: [
     StatusBar,

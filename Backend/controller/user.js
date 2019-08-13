@@ -12,14 +12,23 @@ const user = function(req, res){
         if(req.file){
           return 1;
         }
-        res.json({
-          status:false,
-          message:"Input atleast one field"
-        });
         return 0;
       }
     }
 
+    if(req.err=='FileTypeError'){
+      res.json({
+        status:false,
+        message: 'Error'
+      });
+    }
+
+  if(validate(req.body) === 0){
+    res.json({
+      status:false,
+      message:"Input atleast one field"
+    });
+  }  
 
   if(validate(req.body) === 2){
     var userinfo = {

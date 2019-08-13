@@ -71,9 +71,10 @@ module.exports.getcoursesbyid = function(req, res){
       });
     } else if(results.length>0) {
       con = result.concat(results);
-      res.send(
-         con,
-      );
+      res.json({
+        status: true,
+        message: con
+      });
     } else {
       res.json({
           status:false,

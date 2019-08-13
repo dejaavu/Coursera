@@ -31,6 +31,15 @@ var store = multer.diskStorage({
 
 var ul = multer({
   storage: store,
+  fileFilter: function (req, file, callback) {
+    var path = require('path');
+    var ext = path.extname(file.originalname);
+    if(ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+        req.err = 'FileTypeError';
+        return callback(null, false, new Error('Only images are allowed'));
+    }
+    callback(null, true)
+  },
 
   limits: { fileSize: 1000000 }
 }).single('avatar');
@@ -42,7 +51,7 @@ var sessionChecker = (req, res, next) => {
     } else {
         res.json({
 					status: false,
-					message: "User not logged in",
+          message: "User not logged in",
 				});
     }
 };
@@ -110,7 +119,7 @@ api.get('/user',sessionChecker, userController.userinfo);
 api.get('/user/:email',sessionChecker, userController.userinfobyemail);
 //route to handle subscriptions
 api.get('/subscription', sessionChecker, subscriptionController.subscription);
-api.put('/subscription/:id', sessionChecker, subscriptionController.addsub);
+api.post('/subscription/:id', subscriptionController.addsub);
 api.delete('/subscription/:id', sessionChecker, subscriptionController.removesub);
 api.get('/subscription/:id', sessionChecker, subscriptionController.getsubbyid);
 //route to handle explore courses
