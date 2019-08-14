@@ -21,7 +21,6 @@ export class AppComponent {
 
   private user;
   private avatar;
-  private avatarf;
 
   constructor(
     private platform: Platform,
@@ -35,8 +34,15 @@ export class AppComponent {
     private userService: UserService
   ) {
     this.initializeApp();
+    if(localStorage.getItem('email')){
+      this.userService.load();
+      this.userService.loadid(localStorage.getItem('email').split('.')[0]+localStorage.getItem('email').split('.')[1]);
+    }
     this.userService.userinfo.subscribe((info) => {
       this.user = info;
+      if(info.name == ''){
+        this.user.name = 'USER';
+      }
     });
     this.userService.avatarid.subscribe((id)=>{
       this.userService.getavatar(id).subscribe((data)=>{
